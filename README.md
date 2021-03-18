@@ -3,8 +3,22 @@
 A Flutter PWA that shown Unit conversions like Inches vs Centimeters
 
 **TODO**
-- plan app beyond starter
-- add notes here
+
+- [x] plan app beyond starter
+- [x] add notes here
+- [ ] gh pages
+- [ ] script to prep pwa`
+- [ ] starting with simple counter
+- work towards pwa
+- [ ] hack (see below) for pwa
+- [ ] fix other Lighthouse issues toward 100
+- follow ui from bmi calculator
+- [ ] container
+- [ ] box1, box2 -> unitA (ie inches), unitB (cm)
+- [ ] slider (no numbers)
+- [ ] box3, box4 inch value, cm value
+- [ ] start 'engine' to fill values above
+- [ ] convert 'calculate' button to page to pic unit type with scroll
 
 **NOTES FROM flutter create web**
 
