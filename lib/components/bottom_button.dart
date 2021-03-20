@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:unit_calculator/constants.dart';
 
 class BottomButton extends StatelessWidget {
-  BottomButton({@required this.onTap, @required this.buttonTitle});
+  BottomButton({required this.onTap, required this.buttonTitle});
 
   final Function onTap;
   final String buttonTitle;
@@ -10,7 +10,7 @@ class BottomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap as void Function()?,
       child: Container(
         child: Center(
           child: Text(
