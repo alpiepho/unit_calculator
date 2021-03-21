@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:unit_calculator/components/icon_content.dart';
+//import 'package:unit_calculator/components/icon_content.dart';
 import 'package:unit_calculator/components/reusable_card.dart';
 import 'package:unit_calculator/constants.dart';
 import 'package:unit_calculator/screens/results_page.dart';
@@ -24,6 +24,14 @@ class _InputPageState extends State<InputPage> {
   int weight = 60;
   int age = 20;
 
+  int unitType = 1;
+  double valueLeft = 1.0;
+  double valueRight = 2.54;
+  double tenX = 1.0;
+  double twoX = 1.0;
+  CalculatorBrain calc = CalculatorBrain();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,67 +45,53 @@ class _InputPageState extends State<InputPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Expanded(
-                  child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: ReusableCard(
-                      onPress: () {
-                        setState(() {
-                          selectedGender = Gender.male;
-                        });
-                      },
-                      colour: selectedGender == Gender.male
-                          ? kActiveCardColour
-                          : kInactiveCardColour,
-                      cardChild: IconContent(
-                        icon: FontAwesomeIcons.mars,
-                        label: 'MALE',
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: ReusableCard(
+                        colour: kActiveCardColour,
+                        cardChild: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              calc.getLeftLabel(unitType),
+                              style: kLabelTextStyle,
+                            ),
+                            Text(
+                              valueLeft.toString(),
+                              style: kNumberTextStyle,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: ReusableCard(
-                      onPress: () {
-                        setState(() {
-                          selectedGender = Gender.female;
-                        });
-                      },
-                      colour: selectedGender == Gender.female
-                          ? kActiveCardColour
-                          : kInactiveCardColour,
-                      cardChild: IconContent(
-                        icon: FontAwesomeIcons.venus,
-                        label: 'FEMALE',
+                    Expanded(
+                      child: ReusableCard(
+                        colour: kActiveCardColour,
+                        cardChild: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              calc.getRightLabel(unitType),
+                              style: kLabelTextStyle,
+                            ),
+                            Text(
+                              valueRight.toString(),
+                              style: kNumberTextStyle,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              )),
+                  ],
+                ),
+              ),
               Expanded(
                 child: ReusableCard(
                   colour: kActiveCardColour,
                   cardChild: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(
-                        'HEIGHT',
-                        style: kLabelTextStyle,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.baseline,
-                        textBaseline: TextBaseline.alphabetic,
-                        children: <Widget>[
-                          Text(
-                            height.toString(),
-                            style: kNumberTextStyle,
-                          ),
-                          Text(
-                            'cm',
-                            style: kLabelTextStyle,
-                          )
-                        ],
-                      ),
                       SliderTheme(
                         data: SliderTheme.of(context).copyWith(
                           inactiveTrackColor: Color(0xFF8D8E98),
@@ -105,14 +99,14 @@ class _InputPageState extends State<InputPage> {
                           thumbColor: Color(0xFFEB1555),
                           overlayColor: Color(0x29EB1555),
                           thumbShape:
-                              RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                          RoundSliderThumbShape(enabledThumbRadius: 15.0),
                           overlayShape:
-                              RoundSliderOverlayShape(overlayRadius: 30.0),
+                          RoundSliderOverlayShape(overlayRadius: 30.0),
                         ),
                         child: Slider(
                           value: height.toDouble(),
-                          min: 120.0,
-                          max: 220.0,
+                          min: calc.rangeMin(unitType, tenX, twoX),
+                          max: calc.rangeMax(unitType, tenX, twoX),
                           onChanged: (double newValue) {
                             setState(() {
                               height = newValue.round();
@@ -120,7 +114,22 @@ class _InputPageState extends State<InputPage> {
                           },
                         ),
                       ),
-                    ],
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.baseline,
+                        textBaseline: TextBaseline.alphabetic,
+                        children: <Widget>[
+                          Text(
+                            (tenX * twoX).toString(),
+                            style: kNumberTextStyle,
+                          ),
+                          Text(
+                            'X',
+                            style: kLabelTextStyle,
+                          )
+                        ],
+                      ),
+                     ],
                   ),
                 ),
               ),
@@ -134,11 +143,11 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              'WEIGHT',
+                              '10X',
                               style: kLabelTextStyle,
                             ),
                             Text(
-                              weight.toString(),
+                              tenX.toString(),
                               style: kNumberTextStyle,
                             ),
                             Row(
@@ -148,7 +157,7 @@ class _InputPageState extends State<InputPage> {
                                     icon: FontAwesomeIcons.minus,
                                     onPressed: () {
                                       setState(() {
-                                        weight--;
+                                        tenX /= 10;
                                       });
                                     }),
                                 SizedBox(
@@ -158,7 +167,7 @@ class _InputPageState extends State<InputPage> {
                                   icon: FontAwesomeIcons.plus,
                                   onPressed: () {
                                     setState(() {
-                                      weight++;
+                                      tenX *= 10;
                                     });
                                   },
                                 ),
@@ -175,11 +184,11 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              'AGE',
+                              '2X',
                               style: kLabelTextStyle,
                             ),
                             Text(
-                              age.toString(),
+                              twoX.toString(),
                               style: kNumberTextStyle,
                             ),
                             Row(
@@ -190,7 +199,7 @@ class _InputPageState extends State<InputPage> {
                                   onPressed: () {
                                     setState(
                                       () {
-                                        age--;
+                                        twoX /= 2;
                                       },
                                     );
                                   },
@@ -202,7 +211,7 @@ class _InputPageState extends State<InputPage> {
                                     icon: FontAwesomeIcons.plus,
                                     onPressed: () {
                                       setState(() {
-                                        age++;
+                                        twoX *=2;
                                       });
                                     })
                               ],
@@ -217,8 +226,8 @@ class _InputPageState extends State<InputPage> {
               BottomButton(
                 buttonTitle: 'SELECT UNITS',
                 onTap: () {
-                  CalculatorBrain calc =
-                      CalculatorBrain(height: height, weight: weight);
+                  calc.setHeight(height);
+                  calc.setWeight(weight);
 
                   Navigator.push(
                     context,

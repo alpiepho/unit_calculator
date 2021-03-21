@@ -1,17 +1,43 @@
 import 'dart:math';
 
 class CalculatorBrain {
-  CalculatorBrain({this.height, this.weight});
+  CalculatorBrain();
 
-  final int? height;
-  final int? weight;
+  int height = 0;
+  int weight = 0;
 
   late double _bmi;
 
+  String getLeftLabel(int unitType) {
+    return 'INCHES';
+  }
+
+  String getRightLabel(int unitType) {
+    return 'CM';
+  }
+
+  double rangeMin(int unitType, double tenX, double twoX) {
+    return 120.0;
+  }
+
+  double rangeMax(int unitType, double tenX, double twoX) {
+    return 220.0;
+  }
+
+
+  void setHeight(int height) {
+    this.height = height;
+  }
+
+  void setWeight(int weight) {
+    this.weight = weight;
+  }
+
   String calculateBMI() {
-    _bmi = weight! / pow(height! / 100, 2);
+    _bmi = weight / pow(height / 100, 2);
     return _bmi.toStringAsFixed(1);
   }
+
 
   String getResult() {
     if (_bmi >= 25) {
