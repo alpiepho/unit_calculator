@@ -19,10 +19,6 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Gender? selectedGender;
-  int height = 180;
-  int weight = 60;
-  int age = 20;
 
   int unitType = 1;
   double valueLeft = 1.0;
@@ -104,12 +100,15 @@ class _InputPageState extends State<InputPage> {
                           RoundSliderOverlayShape(overlayRadius: 30.0),
                         ),
                         child: Slider(
-                          value: height.toDouble(),
+                          value: valueLeft,
                           min: calc.rangeMin(unitType, tenX, twoX),
                           max: calc.rangeMax(unitType, tenX, twoX),
                           onChanged: (double newValue) {
                             setState(() {
-                              height = newValue.round();
+                              valueLeft = newValue;
+                              valueLeft = double.parse(valueLeft.toStringAsFixed(2));
+                              valueRight = calc.convert(unitType, tenX, twoX, valueLeft);
+                              valueRight = double.parse(valueRight.toStringAsFixed(2));
                             });
                           },
                         ),
@@ -226,16 +225,14 @@ class _InputPageState extends State<InputPage> {
               BottomButton(
                 buttonTitle: 'SELECT UNITS',
                 onTap: () {
-                  calc.setHeight(height);
-                  calc.setWeight(weight);
 
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => ResultsPage(
-                            bmiResult: calc.calculateBMI(),
-                            resultText: calc.getResult(),
-                            interpretation: calc.getInterpretation(),
+                          bmiResult: '3333',
+                          resultText: 'adadf',
+                          interpretation: 'adfasdfasdf',
                           ),
                     ),
                   );

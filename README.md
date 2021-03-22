@@ -9,6 +9,7 @@ A Flutter PWA that shown Unit conversions like Inches vs Centimeters
 - use range and set for valueB
 - change result page to unit select
 - remove bmi variables
+- click on CM swaps order
 - finish this README
 
 
