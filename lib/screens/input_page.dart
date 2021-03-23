@@ -54,7 +54,7 @@ class _InputPageState extends State<InputPage> {
                               style: kLabelTextStyle,
                             ),
                             Text(
-                              valueLeft.toString(),
+                                (valueLeft * tenX * twoX).toStringAsFixed(2),
                               style: kNumberTextStyle,
                             ),
                           ],
@@ -72,7 +72,7 @@ class _InputPageState extends State<InputPage> {
                               style: kLabelTextStyle,
                             ),
                             Text(
-                              valueRight.toString(),
+                              (valueRight * tenX * twoX).toStringAsFixed(2),
                               style: kNumberTextStyle,
                             ),
                           ],

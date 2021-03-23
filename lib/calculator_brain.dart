@@ -12,7 +12,7 @@ class CalculatorBrain {
   }
 
   double rangeMin(int unitType, double tenX, double twoX) {
-    return 1.0;
+    return 0.0;
   }
 
   double rangeMax(int unitType, double tenX, double twoX) {
