@@ -16,7 +16,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
 
-  int unitType = 1;
+  int unitType = 0;
   double valueLeft = 1.0;
   double valueRight = 2.54;
   double tenX = 1.0;
@@ -34,7 +34,13 @@ class _InputPageState extends State<InputPage> {
       ),
     );
     if (result != null) {
-      setState(() => unitType = result);
+      setState(() {
+        unitType = (result < calc.maxUnits() ? result : 0);
+        valueLeft = valueRight;
+        valueLeft = double.parse(valueLeft.toStringAsFixed(2));
+        valueRight = calc.convert(unitType, valueLeft);
+        valueRight = double.parse(valueRight.toStringAsFixed(2));
+      });
     }
   }
 
@@ -60,7 +66,7 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              calc.getLeftLabel(unitType),
+                              calc.getLabelLeft(unitType),
                               style: kLabelTextStyle,
                             ),
                             Text(
@@ -78,7 +84,7 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text(
-                              calc.getRightLabel(unitType),
+                              calc.getLabelRight(unitType),
                               style: kLabelTextStyle,
                             ),
                             Text(
@@ -111,13 +117,13 @@ class _InputPageState extends State<InputPage> {
                         ),
                         child: Slider(
                           value: valueLeft,
-                          min: calc.rangeMin(unitType, tenX, twoX),
-                          max: calc.rangeMax(unitType, tenX, twoX),
+                          min: calc.rangeMin(unitType),
+                          max: calc.rangeMax(unitType),
                           onChanged: (double newValue) {
                             setState(() {
                               valueLeft = newValue;
                               valueLeft = double.parse(valueLeft.toStringAsFixed(2));
-                              valueRight = calc.convert(unitType, tenX, twoX, valueLeft);
+                              valueRight = calc.convert(unitType, valueLeft);
                               valueRight = double.parse(valueRight.toStringAsFixed(2));
                             });
                           },

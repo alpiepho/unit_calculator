@@ -1,65 +1,76 @@
 import 'dart:math';
 
+class Unit {
+  String labelLeft = '';
+  String labelRight = '';
+  double rangeMin = 0.0;
+  double rangeMax = 0.0;
+
+  Unit(String labelLeft,
+    String labelRight,
+    double rangeMin,
+    double rangeMax,
+  ) {
+    this.labelLeft = labelLeft;
+    this.labelRight = labelRight;
+    this.rangeMin = rangeMin;
+    this.rangeMax = rangeMax;
+  }
+
+}
+
+double convertInchToCm(double valueLeft) {
+  return valueLeft*2.54;
+}
+
+double convertCmToInch(double valueLeft) {
+  return valueLeft/2.54;
+}
+
+
+List<Unit> allUnits = [
+  Unit('INCHES', 'CM', 0.0, 100.0),
+  Unit('CM', 'INCHES', 0.0, 100.0),
+];
+
 class CalculatorBrain {
   CalculatorBrain();
 
-  String getLeftLabel(int unitType) {
-    return 'INCHES';
+  int maxUnits() {
+    return allUnits.length;
   }
 
-  String getRightLabel(int unitType) {
-    return 'CM';
+  String getLabelLeft(int unitType) {
+    return allUnits[unitType].labelLeft;
   }
 
-  double rangeMin(int unitType, double tenX, double twoX) {
-    return 0.0;
+  String getLabelRight(int unitType) {
+    return allUnits[unitType].labelRight;
   }
 
-  double rangeMax(int unitType, double tenX, double twoX) {
-    return 100.0;
+  double rangeMin(int unitType) {
+    return allUnits[unitType].rangeMin;
   }
 
-  double convert(int unitType, double tenX, double twoX, double valueLeft) {
-    return valueLeft*2.54;
+  double rangeMax(int unitType) {
+    return allUnits[unitType].rangeMax;
   }
 
-  //
-  // int height = 0;
-  // int weight = 0;
-  //
-  // late double _bmi;
-  //
-  // void setHeight(int height) {
-  //   this.height = height;
-  // }
-  //
-  // void setWeight(int weight) {
-  //   this.weight = weight;
-  // }
-  //
-  // String calculateBMI() {
-  //   _bmi = weight / pow(height / 100, 2);
-  //   return _bmi.toStringAsFixed(1);
-  // }
-  //
-  //
-  // String getResult() {
-  //   if (_bmi >= 25) {
-  //     return 'Overweight';
-  //   } else if (_bmi > 18.5) {
-  //     return 'Normal';
-  //   } else {
-  //     return 'Underweight';
-  //   }
-  // }
-  //
-  // String getInterpretation() {
-  //   if (_bmi >= 25) {
-  //     return 'You have a higher than normal body weight. Try to exercise more.';
-  //   } else if (_bmi >= 18.5) {
-  //     return 'You have a normal body weight. Good job!';
-  //   } else {
-  //     return 'You have a lower than normal body weight. You can eat a bit more.';
-  //   }
-  // }
+  double convert(int unitType, double valueLeft) {
+    double result = valueLeft;
+    switch (unitType) {
+      case 0:
+        {
+          result = convertInchToCm(valueLeft);
+        }
+        break;
+      case 1:
+      {
+        result = convertCmToInch(valueLeft);
+      }
+      break;
+    }
+    return result;
+  }
+
 }
