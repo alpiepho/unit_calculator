@@ -3,15 +3,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 //import 'package:unit_calculator/components/icon_content.dart';
 import 'package:unit_calculator/components/reusable_card.dart';
 import 'package:unit_calculator/constants.dart';
-import 'package:unit_calculator/screens/results_page.dart';
+import 'package:unit_calculator/screens/select_page.dart';
 import 'package:unit_calculator/components/bottom_button.dart';
 import 'package:unit_calculator/components/round_icon_button.dart';
 import 'package:unit_calculator/calculator_brain.dart';
 
-enum Gender {
-  male,
-  female,
-}
 
 class InputPage extends StatefulWidget {
   @override
@@ -27,6 +23,20 @@ class _InputPageState extends State<InputPage> {
   double twoX = 1.0;
   CalculatorBrain calc = CalculatorBrain();
 
+
+  void moveToSelectPage() async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SelectPage(
+          unitType: unitType,
+        ),
+      ),
+    );
+    if (result != null) {
+      setState(() => unitType = result);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -225,18 +235,8 @@ class _InputPageState extends State<InputPage> {
               BottomButton(
                 buttonTitle: 'SELECT UNITS',
                 onTap: () {
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ResultsPage(
-                          bmiResult: '3333',
-                          resultText: 'adadf',
-                          interpretation: 'adfasdfasdf',
-                          ),
-                    ),
-                  );
-                },
+                  moveToSelectPage();
+                  },
               ),
             ],
           ),
