@@ -9,6 +9,7 @@ class UnitCalculator extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
         primaryColor: Color(0xFF0A0E21),
+        accentColor: Colors.red,
         scaffoldBackgroundColor: Color(0xFF0A0E21),
       ),
       home: InputPage(),

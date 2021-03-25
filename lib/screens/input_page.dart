@@ -40,6 +40,9 @@ class _InputPageState extends State<InputPage> {
         setState(() {
           selectedUnitSelect = value;
           unitType = this.calc.decodeUnitTypeSelectString(selectedUnitSelect);
+          if (valueRight < this.calc.rangeMin(unitType)) valueRight = this.calc.rangeMin(unitType);
+          if (valueRight > this.calc.rangeMax(unitType)) valueRight = this.calc.rangeMax(unitType);
+
           //TODO refactor
           valueLeft = valueRight;
           valueLeft = double.parse(valueLeft.toStringAsFixed(2));

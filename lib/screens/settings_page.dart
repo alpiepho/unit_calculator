@@ -25,15 +25,31 @@ class SettingsPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Expanded(
-                child: Container(
-                  padding: EdgeInsets.all(15.0),
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Settings',
-                    style: kTitleTextStyle,
+                flex: 2,
+                child: ReusableCard(
+                  colour: kActiveCardColour,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "A simple web applications written with Flutter as a PWA.  Copyright 2021, Thatname Group.",
+                        style: kResultTextStyle,
+                      ),
+                    ],
                   ),
                 ),
               ),
+              // Expanded(
+              //   child: Container(
+              //     padding: EdgeInsets.all(15.0),
+              //     alignment: Alignment.center,
+              //     child: Text(
+              //       'Settings',
+              //       style: kTitleTextStyle,
+              //     ),
+              //   ),
+              // ),
               Expanded(
                 flex: 5,
                 child: ReusableCard(
@@ -43,7 +59,7 @@ class SettingsPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        unitType.toString().toUpperCase(),
+                        "Settings TBD",
                         style: kResultTextStyle,
                       ),
                     ],
@@ -51,7 +67,7 @@ class SettingsPage extends StatelessWidget {
                 ),
               ),
               BottomButton(
-                buttonTitle: 'SELECT',
+                buttonTitle: 'UPDATE',
                 onTap: () {
                   Navigator.pop(context, this.unitType); //NOTE: return left in as example
                 },

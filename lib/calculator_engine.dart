@@ -8,6 +8,7 @@ class Unit {
   String labelRight = '';
   double rangeMin = 0.0;
   double rangeMax = 0.0;
+  var func;
 
   Unit(
       String labelSelect,
@@ -15,14 +16,20 @@ class Unit {
       String labelRight,
       double rangeMin,
       double rangeMax,
+      var func,
   ) {
     this.labelSelect = labelSelect;
     this.labelLeft = labelLeft;
     this.labelRight = labelRight;
     this.rangeMin = rangeMin;
     this.rangeMax = rangeMax;
+    this.func = func;
   }
 
+}
+
+double convertNop(double valueLeft) {
+  return valueLeft;
 }
 
 double convertInchToCm(double valueLeft) {
@@ -33,10 +40,46 @@ double convertCmToInch(double valueLeft) {
   return valueLeft/2.54;
 }
 
+double convertTablespoonToTeaspoon(double valueLeft) {
+  return valueLeft*3;
+}
+
+double convertTeaspoonToTablespoon(double valueLeft) {
+  return valueLeft/3;
+}
+
+
+/*
+1 tablespoon = 3 teaspoon
+2 tablespoon = 1 oz
+0.5 cup = 8 tablespoon
+1 cup = 8 oz
+1 cup = 0.5 pint
+1 pint = 2 cup
+1 quart = 4 cup
+1 quart = 2 pint
+1 gallon = 4 quart
+1 gallon = 8 pint
+0.5 cup = 4 tablespoon
+1 stick butter = 7 tablespoon veg oil
+1 clove = 0.125 teaspoon powder
+ */
 
 List<Unit> allUnits = [
-  Unit('inches to cm',    'INCHES', 'CM', 0.0, 100.0),
-  Unit('cm tp inches',    'CM', 'INCHES', 0.0, 100.0),
+  // length
+  Unit('length: inches -> cm',    'inches', 'cm', 0.0, 100.0, convertInchToCm),
+  Unit('length: cm -> inches',    'cm', 'inches', 0.0, 100.0, convertCmToInch),
+
+  // volume
+
+  // weight
+
+  // cooking
+  Unit('cooking: tbp -> tsp', 'tablespoon(tbp)', 'teaspoon(tsp)', 0.0, 10.0, convertTablespoonToTeaspoon),
+  Unit('cooking: tsp -> tbp', 'teaspoon(tsp)', 'tablespoon(tbp)', 0.0, 10.0, convertTeaspoonToTablespoon),
+
+
+  //Unit('AAA to BBB', 'aaa', 'bbb', 0.0, 10.0, convertNop),
 ];
 
 class CalculatorEngine {
@@ -84,20 +127,6 @@ class CalculatorEngine {
   }
 
   double convert(int unitType, double valueLeft) {
-    double result = valueLeft;
-    switch (unitType) {
-      case 0:
-        {
-          result = convertInchToCm(valueLeft);
-        }
-        break;
-      case 1:
-      {
-        result = convertCmToInch(valueLeft);
-      }
-      break;
-    }
-    return result;
+    return allUnits[unitType].func(valueLeft);
   }
-
 }

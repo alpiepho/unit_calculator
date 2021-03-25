@@ -4,16 +4,19 @@ A Flutter PWA that shown Unit conversions like Inches vs Centimeters
 
 **TODO**
 - refactor select page as about/settings page
+- add darkmode setting
+- persist settings
 - add more conversions
   - ft yards
   - yards ft
   - ft meter
   - meter ft
-  - cooking - check converter magnet
+  - cooking
+- make sure carry over values work as expected (cooking?)
 - publish as pwa to gh-pages
 - finish pwa manual tweaks for base pwa
 - finish pwa manual tweaks for best Lighthouse score
-- color for unit select
+
 - finish this README
 
 
