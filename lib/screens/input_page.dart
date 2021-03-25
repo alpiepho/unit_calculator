@@ -3,10 +3,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 //import 'package:unit_calculator/components/icon_content.dart';
 import 'package:unit_calculator/components/reusable_card.dart';
 import 'package:unit_calculator/constants.dart';
-import 'package:unit_calculator/screens/select_page.dart';
+import 'package:unit_calculator/screens/settings_page.dart';
 import 'package:unit_calculator/components/bottom_button.dart';
 import 'package:unit_calculator/components/round_icon_button.dart';
-import 'package:unit_calculator/calculator_brain.dart';
+import 'package:unit_calculator/calculator_engine.dart';
 
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 
@@ -22,33 +22,39 @@ class _InputPageState extends State<InputPage> {
   double valueRight = 2.54;
   double tenX = 1.0;
   double twoX = 1.0;
-  CalculatorBrain calc = CalculatorBrain();
+  CalculatorEngine calc = CalculatorEngine();
 
-  // var selectedUsState = "Connecticut";
-  //
-  // List<String> usStates = <String>[
-  //   'Alabama',
-  //   'Alaska',
-  //   'Arizona',
-  //   'Arkansas',
-  //   'California',
-  //   'Colorado',
-  //   'Connecticut',
-  // ];
+  var selectedUnitSelect = "";
+  List<String> allUnitSelects = CalculatorEngine().getUnitTypeSelectList();
 
+  void openUnitTypeDialog() async {
+    showMaterialScrollPicker(
+      backgroundColor: kActiveCardColour,
+      headerColor: kActiveCardColour,
+      showDivider: false,
+      context: context,
+      title: "Pick Unit Type",
+      items: allUnitSelects,
+      selectedItem: selectedUnitSelect,
+      onChanged: (value) {
+        setState(() {
+          selectedUnitSelect = value;
+          unitType = this.calc.decodeUnitTypeSelectString(selectedUnitSelect);
+          //TODO refactor
+          valueLeft = valueRight;
+          valueLeft = double.parse(valueLeft.toStringAsFixed(2));
+          valueRight = calc.convert(unitType, valueLeft);
+          valueRight = double.parse(valueRight.toStringAsFixed(2));
+        });
+      },
+    );
+  }
 
-  void moveToSelectPage() async {
-    // showMaterialScrollPicker(
-    //   context: context,
-    //   title: "Pick Your City",
-    //   items: usStates,
-    //   selectedItem: selectedUsState,
-    //   onChanged: (value) => setState(() => selectedUsState = value),
-    // );
+  void moveToSettingsPage() async {
     final result = await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => SelectPage(
+        builder: (context) => SettingsPage(
           unitType: unitType,
         ),
       ),
@@ -81,6 +87,7 @@ class _InputPageState extends State<InputPage> {
                   children: <Widget>[
                     Expanded(
                       child: ReusableCard(
+                        onPress: openUnitTypeDialog,
                         colour: kActiveCardColour,
                         cardChild: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -99,6 +106,7 @@ class _InputPageState extends State<InputPage> {
                     ),
                     Expanded(
                       child: ReusableCard(
+                        onPress: openUnitTypeDialog,
                         colour: kActiveCardColour,
                         cardChild: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -259,9 +267,9 @@ class _InputPageState extends State<InputPage> {
                 ),
               ),
               BottomButton(
-                buttonTitle: 'SELECT UNITS',
+                buttonTitle: 'SETTINGS',
                 onTap: () {
-                  moveToSelectPage();
+                  moveToSettingsPage();
                   },
               ),
             ],

@@ -5,8 +5,8 @@ import 'package:unit_calculator/components/bottom_button.dart';
 //import 'package:flutter/material.dart';
 //import 'package:flutter/cupertino.dart';
 
-class SelectPage extends StatelessWidget {
-  SelectPage(
+class SettingsPage extends StatelessWidget {
+  SettingsPage(
       {required this.unitType});
 
   final int unitType;
@@ -29,7 +29,7 @@ class SelectPage extends StatelessWidget {
                   padding: EdgeInsets.all(15.0),
                   alignment: Alignment.center,
                   child: Text(
-                    'Pick Unit',
+                    'Settings',
                     style: kTitleTextStyle,
                   ),
                 ),
@@ -53,7 +53,7 @@ class SelectPage extends StatelessWidget {
               BottomButton(
                 buttonTitle: 'SELECT',
                 onTap: () {
-                  Navigator.pop(context, this.unitType+1);
+                  Navigator.pop(context, this.unitType); //NOTE: return left in as example
                 },
               )
             ],

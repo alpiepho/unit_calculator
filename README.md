@@ -3,10 +3,7 @@
 A Flutter PWA that shown Unit conversions like Inches vs Centimeters
 
 **TODO**
-- refactor brains as engine
-- refactor select page as about page
-- convert sample state select as unit type select
-- style unittype select
+- refactor select page as about/settings page
 - add more conversions
   - ft yards
   - yards ft
@@ -16,6 +13,7 @@ A Flutter PWA that shown Unit conversions like Inches vs Centimeters
 - publish as pwa to gh-pages
 - finish pwa manual tweaks for base pwa
 - finish pwa manual tweaks for best Lighthouse score
+- color for unit select
 - finish this README
 
 
