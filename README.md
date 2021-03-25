@@ -3,13 +3,19 @@
 A Flutter PWA that shown Unit conversions like Inches vs Centimeters
 
 **TODO**
-
-- convert brains to engine
-- change valueA/B based on tenX/twoX
-- use range and set for valueB
-- change result page to unit select
-- remove bmi variables
-- click on CM swaps order
+- refactor brains as engine
+- refactor select page as about page
+- convert sample state select as unit type select
+- style unittype select
+- add more conversions
+  - ft yards
+  - yards ft
+  - ft meter
+  - meter ft
+  - cooking - check converter magnet
+- publish as pwa to gh-pages
+- finish pwa manual tweaks for base pwa
+- finish pwa manual tweaks for best Lighthouse score
 - finish this README
 
 

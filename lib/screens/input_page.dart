@@ -8,6 +8,7 @@ import 'package:unit_calculator/components/bottom_button.dart';
 import 'package:unit_calculator/components/round_icon_button.dart';
 import 'package:unit_calculator/calculator_brain.dart';
 
+import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -23,8 +24,27 @@ class _InputPageState extends State<InputPage> {
   double twoX = 1.0;
   CalculatorBrain calc = CalculatorBrain();
 
+  // var selectedUsState = "Connecticut";
+  //
+  // List<String> usStates = <String>[
+  //   'Alabama',
+  //   'Alaska',
+  //   'Arizona',
+  //   'Arkansas',
+  //   'California',
+  //   'Colorado',
+  //   'Connecticut',
+  // ];
+
 
   void moveToSelectPage() async {
+    // showMaterialScrollPicker(
+    //   context: context,
+    //   title: "Pick Your City",
+    //   items: usStates,
+    //   selectedItem: selectedUsState,
+    //   onChanged: (value) => setState(() => selectedUsState = value),
+    // );
     final result = await Navigator.push(
       context,
       MaterialPageRoute(
