@@ -9,6 +9,7 @@ import 'package:unit_calculator/components/round_icon_button.dart';
 import 'package:unit_calculator/calculator_engine.dart';
 
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -40,6 +41,12 @@ class _InputPageState extends State<InputPage> {
         setState(() {
           selectedUnitSelect = value;
           unitType = this.calc.decodeUnitTypeSelectString(selectedUnitSelect);
+          //TODO Save to persistent storage
+          // _incrementCounter() async {
+          //   SharedPreferences prefs = await SharedPreferences.getInstance();
+          //   int counter = (prefs.getInt('counter') ?? 0) + 1;
+          //   await prefs.setInt('counter', counter);
+          // }
           if (valueRight < this.calc.rangeMin(unitType)) valueRight = this.calc.rangeMin(unitType);
           if (valueRight > this.calc.rangeMax(unitType)) valueRight = this.calc.rangeMax(unitType);
 
@@ -71,6 +78,15 @@ class _InputPageState extends State<InputPage> {
         valueRight = double.parse(valueRight.toStringAsFixed(2));
       });
     }
+  }
+
+  @override
+  initState() {
+    super.initState();
+    setState(() {
+      unitType = 0;
+      //TODO get initial state from persistant storage
+    });
   }
 
   @override

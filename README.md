@@ -6,6 +6,8 @@ A Flutter PWA that shown Unit conversions like Inches vs Centimeters
 - refactor select page as about/settings page
 - add darkmode setting
 - persist settings
+- refactor for private variables and methods
+- other refactor (includes, repeated code)
 - add more conversions
   - ft yards
   - yards ft
@@ -41,6 +43,8 @@ To enable null safety, type:
 - **HACK** Flutter has poor support here, to get PWA add gh-pages url to all links in gh-pages branch mainfest.json
 - see end of https://github.com/flutter/flutter/issues/60069, issue 10-14 days old
 
+## Details of persistent storage
+https://pub.dev/packages/shared_preferences
 
 
 ## (Original) Getting Started

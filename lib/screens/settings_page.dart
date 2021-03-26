@@ -32,9 +32,12 @@ class SettingsPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text(
-                        "A simple web applications written with Flutter as a PWA.  Copyright 2021, Thatname Group.",
-                        style: kResultTextStyle,
+                      Container(
+                        padding: EdgeInsets.all(15.0),
+                        child: Text(
+                          "A simple web applications written with Flutter as a PWA.\n  Copyright 2021, Thatname Group.",
+                          style: kLabelTextStyle,
+                        ),
                       ),
                     ],
                   ),
@@ -60,7 +63,7 @@ class SettingsPage extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         "Settings TBD",
-                        style: kResultTextStyle,
+                        style: kLabelTextStyle,
                       ),
                     ],
                   ),
