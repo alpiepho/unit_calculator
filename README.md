@@ -3,7 +3,6 @@
 A Flutter PWA that shown Unit conversions like Inches vs Centimeters
 
 **TODO**
-- version number (variable)
 - gh link (as link)
 - try add gh-page base url directly to index.hmtl (can we still debug?)
     - (https://alpiepho.github.io/unit_calculator/)

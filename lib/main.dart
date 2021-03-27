@@ -21,6 +21,7 @@ class UnitCalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Unit Calculator",
       theme: ThemeData.dark().copyWith(
         primaryColor: Color(0xFF0A0E21),
         accentColor: Color(0xFFEB1555),
