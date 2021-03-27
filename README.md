@@ -36,6 +36,13 @@ To enable null safety, type:
   $ dart migrate --apply-changes
 
 
+## Running peanut
+
+flutter pub global activate peanut
+export PATH="$PATH":"$HOME/development/flutter/.pub-cache/bin"
+flutter pub global run peanut:peanut
+git push origin --set-upstream gh-pages
+
 ## Issues with GitHub Pages and Flutter app as PWA
 
 - need to add full gh-pages url to index.html `<base href="/">`
