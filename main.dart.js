@@ -7910,9 +7910,11 @@ this.b=b},
 CU:function CU(){},
 aa8:function(){return new T.p3(new S.MF(),P.z(t.K,t.oc))},
 SY:function SY(a){this.b=a},
-pA:function pA(a,b,c){this.e=a
-this.fx=b
-this.a=c},
+pA:function pA(a,b,c,d){var _=this
+_.e=a
+_.dy=b
+_.fx=c
+_.a=d},
 MF:function MF(){},
 Wl:function Wl(){},
 tC:function tC(a){var _=this
@@ -31576,13 +31578,14 @@ s.toString
 b.toString
 s=b
 return new M.qN(new K.nP(o,s,C.b7,C.aU,m,m),m)},
-JO:function(a){var s,r=this,q=null,p=r.a,o=p.fx
-o=o.b
-s=o
-p=p.e
-o=r.gzY()
-r.a.toString
-return new S.rH(q,q,q,new S.Wh(),q,q,q,q,p,C.wR,q,q,C.wg,r.gNx(),"",q,C.Aa,s,q,o,q,q,C.pd,!1,!1,!1,!1,r.gNi(),!0,q,q,q,new N.i7(r,t.By))},
+JO:function(a){var s,r,q=this,p=null,o=q.a,n=o.fx
+n=n.b
+s=n
+n=o.e
+o=o.dy
+r=q.gzY()
+q.a.toString
+return new S.rH(p,p,p,new S.Wh(),p,p,p,p,n,C.wR,p,p,C.wg,q.gNx(),o,p,C.Aa,s,p,r,p,p,C.pd,!1,!1,!1,!1,q.gNi(),!0,p,p,p,new N.i7(q,t.By))},
 J:function(a,b){var s=this.JO(b),r=this.d
 if(r==null)r=H.i(H.q("_heroController"))
 return new K.qP(new S.Wl(),new K.jH(r,s,null),null)}}
@@ -48888,7 +48891,7 @@ return null},
 $S:313}
 F.AY.prototype={
 J:function(a,b){var s=4278849057
-return new S.pA(new V.pa(null),X.a49(C.X).Re(new P.t(4293596501),new P.t(s),new P.t(s)),null)}}
+return new S.pA(new V.pa(null),"Unit Calculator",X.a49(C.X).Re(new P.t(4293596501),new P.t(s),new P.t(s)),null)}}
 V.pa.prototype={
 ax:function(){return new V.to(2.54,new B.w0(),new B.w0().Fr(),C.l)}}
 V.to.prototype={
@@ -49009,7 +49012,7 @@ $0:function(){this.a.px()},
 $S:1}
 S.mp.prototype={
 J:function(a,b){var s=null,r=t.p
-return M.a3S(E.a1I(L.cp("UNIT CALCULATOR",s)),T.f1(M.cZ(s,T.f3(H.b([T.ep(new S.fm(C.bp,T.f3(H.b([M.cZ(s,L.cp("A simple web applications written with Flutter as a PWA.\n  Version 0.1 \n https://github.com/alpiepho/unit_calculator \n Copyright 2021, Thatname Group.",C.eU),C.o,s,s,s,s,s,s,new V.aL(15,15,15,15),s,s,s)],r),C.a1,C.k2),s,s),2),T.ep(new S.fm(C.bp,T.f3(H.b([L.cp("Settings TBD",C.eU)],r),C.a1,C.k2),s,s),5),new V.o4(new S.Qt(this,b),"UPDATE",s)],r),C.hn,C.k2),C.o,s,s,s,s,s,s,s,s,s,600),s,s))}}
+return M.a3S(E.a1I(L.cp("UNIT CALCULATOR",s)),T.f1(M.cZ(s,T.f3(H.b([T.ep(new S.fm(C.bp,T.f3(H.b([M.cZ(s,L.cp("A simple web applications written with Flutter as a PWA.\n  Version: 0.1 \n https://github.com/alpiepho/unit_calculator \n Copyright 2021, Thatname Group.",C.eU),C.o,s,s,s,s,s,s,new V.aL(15,15,15,15),s,s,s)],r),C.a1,C.k2),s,s),2),T.ep(new S.fm(C.bp,T.f3(H.b([L.cp("Settings TBD",C.eU)],r),C.a1,C.k2),s,s),5),new V.o4(new S.Qt(this,b),"UPDATE",s)],r),C.hn,C.k2),C.o,s,s,s,s,s,s,s,s,s,600),s,s))}}
 S.Qt.prototype={
 $0:function(){K.it(this.b,!1).mh(0,this.a.c)},
 $S:1}
