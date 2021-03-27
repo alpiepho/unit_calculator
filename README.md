@@ -3,11 +3,23 @@
 A Flutter PWA that shown Unit conversions like Inches vs Centimeters
 
 **TODO**
-- refactor select page as about/settings page
-- add darkmode setting
+- version number (variable)
+- gh link (as link)
+- try add gh-page base url directly to index.hmtl (can we still debug?)
+    - (https://alpiepho.github.io/unit_calculator/)
+- try gh-page base url directly to flutter_service_worker.js
+- force portrait mode
 - persist settings
+    - unittype
+    - valueleft
+    - tenx
+    - twox
+- add darkmode setting and persist
+- add -1 +1 to slider card
+- conditional style on values to scale down font
 - refactor for private variables and methods
 - other refactor (includes, repeated code)
+- change convert to inline
 - add more conversions
   - ft yards
   - yards ft
@@ -15,11 +27,12 @@ A Flutter PWA that shown Unit conversions like Inches vs Centimeters
   - meter ft
   - cooking
 - make sure carry over values work as expected (cooking?)
-- publish as pwa to gh-pages
-- finish pwa manual tweaks for base pwa
-- finish pwa manual tweaks for best Lighthouse score
+- improve Lighthouse score
+- create icon
 
 - finish this README
+- re-visit style
+- test with others
 
 
 

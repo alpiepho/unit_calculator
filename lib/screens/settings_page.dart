@@ -35,7 +35,7 @@ class SettingsPage extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.all(15.0),
                         child: Text(
-                          "A simple web applications written with Flutter as a PWA.\n  Copyright 2021, Thatname Group.",
+                          "A simple web applications written with Flutter as a PWA.\n  Version 0.1 \n https://github.com/alpiepho/unit_calculator \n Copyright 2021, Thatname Group.",
                           style: kLabelTextStyle,
                         ),
                       ),
