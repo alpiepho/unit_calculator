@@ -4,11 +4,11 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "16497e0ca8b2725df6a8eb833ddf01d0",
-"index.html": "86f0d0aed77393b5cac13dcb115c661f",
-"/": "e25486b4ab24f7f9e53adcddc58435bf",
+"index.html": "debf81d2d286ea1957a12043c6d58b6d",
+"/": "380cb43eceae5572a4cb04c1976d9b07",
 "test/widget_test.dart": "6b2218306343168469bea21c0f53457c",
-"main.dart.js": "38246a317ebf46a16ad4bfd485753093",
-"web/index.html": "e25486b4ab24f7f9e53adcddc58435bf",
+"main.dart.js": "b4c95f5c618cf9b9252923b952805619",
+"web/index.html": "380cb43eceae5572a4cb04c1976d9b07",
 "web/favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "web/icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "web/icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
@@ -107,12 +107,12 @@ const RESOURCES = {
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "https://alpiepho.github.io/unit_calculator/",
-"https://alpiepho.github.io/unit_calculator/main.dart.js",
-"https://alpiepho.github.io/unit_calculator/index.html",
-"https://alpiepho.github.io/unit_calculator/assets/NOTICES",
-"https://alpiepho.github.io/unit_calculator/assets/AssetManifest.json",
-"https://alpiepho.github.io/unit_calculator/assets/FontManifest.json"];
+  "/",
+"main.dart.js",
+"index.html",
+"assets/NOTICES",
+"assets/AssetManifest.json",
+"assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   self.skipWaiting();
