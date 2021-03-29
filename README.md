@@ -7,18 +7,16 @@ A Flutter PWA that shown Unit conversions like Inches vs Centimeters
 - try add gh-page base url directly to index.hmtl (can we still debug?)
     - (https://alpiepho.github.io/unit_calculator/)
 - try gh-page base url directly to flutter_service_worker.js
-- force portrait mode
+- force portrait mode (may be Flutter bug)
 - persist settings
     - unittype
     - valueleft
     - tenx
     - twox
 - add darkmode setting and persist
-- add -1 +1 to slider card
 - conditional style on values to scale down font
 - refactor for private variables and methods
 - other refactor (includes, repeated code)
-- change convert to inline
 - add more conversions
   - ft yards
   - yards ft

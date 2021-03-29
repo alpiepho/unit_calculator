@@ -1,6 +1,4 @@
-import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 
 class Unit {
   String labelSelect = '';
@@ -8,6 +6,7 @@ class Unit {
   String labelRight = '';
   double rangeMin = 0.0;
   double rangeMax = 0.0;
+  double rangeDelta = 0.0;
   var func;
 
   Unit(
@@ -16,6 +15,7 @@ class Unit {
       String labelRight,
       double rangeMin,
       double rangeMax,
+      double rangeDelta,
       var func,
   ) {
     this.labelSelect = labelSelect;
@@ -23,29 +23,10 @@ class Unit {
     this.labelRight = labelRight;
     this.rangeMin = rangeMin;
     this.rangeMax = rangeMax;
+    this.rangeDelta = rangeDelta;
     this.func = func;
   }
 
-}
-
-double convertNop(double valueLeft) {
-  return valueLeft;
-}
-
-double convertInchToCm(double valueLeft) {
-  return valueLeft*2.54;
-}
-
-double convertCmToInch(double valueLeft) {
-  return valueLeft/2.54;
-}
-
-double convertTablespoonToTeaspoon(double valueLeft) {
-  return valueLeft*3;
-}
-
-double convertTeaspoonToTablespoon(double valueLeft) {
-  return valueLeft/3;
 }
 
 
@@ -66,17 +47,20 @@ double convertTeaspoonToTablespoon(double valueLeft) {
  */
 
 List<Unit> allUnits = [
+  //Unit('nop: nop -> nop', 'nop', 'nop', 0.0, 10.0, 0.1, (double valueLeft) {return valueLeft;}),
+
+
   // length
-  Unit('length: inches -> cm',    'inches', 'cm', 0.0, 100.0, convertInchToCm),
-  Unit('length: cm -> inches',    'cm', 'inches', 0.0, 100.0, convertCmToInch),
+  Unit('length: inches -> cm',    'inches', 'cm', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*2.54; }),
+  Unit('length: cm -> inches',    'cm', 'inches', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/2.54; }),
 
   // volume
 
   // weight
 
   // cooking
-  Unit('cooking: tbp -> tsp', 'tablespoon(tbp)', 'teaspoon(tsp)', 0.0, 10.0, convertTablespoonToTeaspoon),
-  Unit('cooking: tsp -> tbp', 'teaspoon(tsp)', 'tablespoon(tbp)', 0.0, 10.0, convertTeaspoonToTablespoon),
+  Unit('cooking: tbp -> tsp', 'tablespoon(tbp)', 'teaspoon(tsp)', 0.0, 10.0, 0.1, (double valueLeft) { return valueLeft*3; }),
+  Unit('cooking: tsp -> tbp', 'teaspoon(tsp)', 'tablespoon(tbp)', 0.0, 10.0, 0.1, (double valueLeft) { return valueLeft/3; }),
 
 
   //Unit('AAA to BBB', 'aaa', 'bbb', 0.0, 10.0, convertNop),
@@ -124,6 +108,24 @@ class CalculatorEngine {
 
   double rangeMax(int unitType) {
     return allUnits[unitType].rangeMax;
+  }
+
+  double rangeDelta(int unitType) {
+    return allUnits[unitType].rangeDelta;
+  }
+
+  double rangeDeltaAdjust(int unitType, double direction, double valueLeft) {
+    double delta = allUnits[unitType].rangeDelta;
+    double result = valueLeft + (direction * delta);
+
+    // need to adjust by /delta, .floorToDouble(), then *delta to 'snap' to next delta
+    result = result/delta;
+    result = result.roundToDouble();
+    result = result*delta;
+
+    if (result < allUnits[unitType].rangeMin) result = allUnits[unitType].rangeMin;
+    if (result > allUnits[unitType].rangeMax) result = allUnits[unitType].rangeMax;
+    return result;
   }
 
   double convert(int unitType, double valueLeft) {

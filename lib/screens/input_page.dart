@@ -91,210 +91,495 @@ class _InputPageState extends State<InputPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('UNIT CALCULATOR'),
-      ),
-      body: Center(
-        child: Container(
-          width: 600,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Expanded(
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: ReusableCard(
-                        onPress: openUnitTypeDialog,
-                        colour: kActiveCardColour,
-                        cardChild: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              calc.getLabelLeft(unitType),
-                              style: kLabelTextStyle,
-                            ),
-                            Text(
-                                (valueLeft * tenX * twoX).toStringAsFixed(2),
-                              style: kNumberTextStyle,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: ReusableCard(
-                        onPress: openUnitTypeDialog,
-                        colour: kActiveCardColour,
-                        cardChild: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              calc.getLabelRight(unitType),
-                              style: kLabelTextStyle,
-                            ),
-                            Text(
-                              (valueRight * tenX * twoX).toStringAsFixed(2),
-                              style: kNumberTextStyle,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: ReusableCard(
-                  colour: kActiveCardColour,
-                  cardChild: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+    var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    if (isPortrait) {
+      return Scaffold(
+        appBar: AppBar(
+          toolbarHeight: kToolbarHeightPortrait,
+          title: Text('UNIT CALCULATOR'),
+        ),
+        body: Center(
+          child: Container(
+            width: kMainContainerWidthPortrait,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Expanded(
+                  child: Row(
                     children: <Widget>[
-                      SliderTheme(
-                        data: SliderTheme.of(context).copyWith(
-                          inactiveTrackColor: Color(0xFF8D8E98),
-                          activeTrackColor: Colors.white,
-                          thumbColor: Color(0xFFEB1555),
-                          overlayColor: Color(0x29EB1555),
-                          thumbShape:
-                          RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                          overlayShape:
-                          RoundSliderOverlayShape(overlayRadius: 30.0),
-                        ),
-                        child: Slider(
-                          value: valueLeft,
-                          min: calc.rangeMin(unitType),
-                          max: calc.rangeMax(unitType),
-                          onChanged: (double newValue) {
-                            setState(() {
-                              valueLeft = newValue;
-                              valueLeft = double.parse(valueLeft.toStringAsFixed(2));
-                              valueRight = calc.convert(unitType, valueLeft);
-                              valueRight = double.parse(valueRight.toStringAsFixed(2));
-                            });
-                          },
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.baseline,
-                        textBaseline: TextBaseline.alphabetic,
-                        children: <Widget>[
-                          Text(
-                            (tenX * twoX).toString(),
-                            style: kNumberTextStyle,
+                      Expanded(
+                        child: ReusableCard(
+                          onPress: openUnitTypeDialog,
+                          colour: kActiveCardColour,
+                          cardChild: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                calc.getLabelLeft(unitType),
+                                style: kLabelTextStyle,
+                              ),
+                              Text(
+                                (valueLeft * tenX * twoX).toStringAsFixed(2),
+                                style: kNumberTextStyle,
+                              ),
+                            ],
                           ),
-                          Text(
-                            'X',
-                            style: kLabelTextStyle,
-                          )
-                        ],
+                        ),
                       ),
-                     ],
+                      Expanded(
+                        child: ReusableCard(
+                          onPress: openUnitTypeDialog,
+                          colour: kActiveCardColour,
+                          cardChild: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                calc.getLabelRight(unitType),
+                                style: kLabelTextStyle,
+                              ),
+                              Text(
+                                (valueRight * tenX * twoX).toStringAsFixed(2),
+                                style: kNumberTextStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              Expanded(
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: ReusableCard(
-                        colour: kActiveCardColour,
-                        cardChild: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                Expanded(
+                  child: ReusableCard(
+                    colour: kActiveCardColour,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        SliderTheme(
+                          data: SliderTheme.of(context).copyWith(
+                            inactiveTrackColor: Color(0xFF8D8E98),
+                            activeTrackColor: Colors.white,
+                            thumbColor: Color(0xFFEB1555),
+                            overlayColor: Color(0x29EB1555),
+                            thumbShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                            overlayShape:
+                            RoundSliderOverlayShape(overlayRadius: 30.0),
+                          ),
+                          child: Slider(
+                            value: valueLeft,
+                            min: calc.rangeMin(unitType),
+                            max: calc.rangeMax(unitType),
+                            onChanged: (double newValue) {
+                              setState(() {
+                                valueLeft = newValue;
+                                valueLeft = double.parse(valueLeft.toStringAsFixed(2));
+                                valueRight = calc.convert(unitType, valueLeft);
+                                valueRight = double.parse(valueRight.toStringAsFixed(2));
+                              });
+                            },
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
                           children: <Widget>[
-                            Text(
-                              '10X',
-                              style: kLabelTextStyle,
-                            ),
-                            Text(
-                              tenX.toString(),
-                              style: kNumberTextStyle,
+                            RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    valueLeft = calc.rangeDeltaAdjust(unitType, -1.0, valueLeft);
+                                    valueLeft = double.parse(valueLeft.toStringAsFixed(2));
+                                    valueRight = calc.convert(unitType, valueLeft);
+                                    valueRight = double.parse(valueRight.toStringAsFixed(2));
+                                  });
+                                }),
+                            SizedBox(
+                              width: 5.0,
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                RoundIconButton(
-                                    icon: FontAwesomeIcons.minus,
-                                    onPressed: () {
-                                      setState(() {
-                                        tenX /= 10;
-                                      });
-                                    }),
-                                SizedBox(
-                                  width: 10.0,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.baseline,
+                              textBaseline: TextBaseline.alphabetic,
+                              children: [
+                                Text(
+                                  (tenX * twoX).toString(),
+                                  style: kNumberTextStyle,
                                 ),
-                                RoundIconButton(
-                                  icon: FontAwesomeIcons.plus,
-                                  onPressed: () {
-                                    setState(() {
-                                      tenX *= 10;
-                                    });
-                                  },
+                                Text(
+                                  'X',
+                                  style: kLabelTextStyle,
                                 ),
                               ],
                             ),
+                            SizedBox(
+                              width: 5.0,
+                            ),
+                            RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  setState(() {
+                                    valueLeft = calc.rangeDeltaAdjust(unitType, 1.0, valueLeft);
+                                    valueLeft = double.parse(valueLeft.toStringAsFixed(2));
+                                    valueRight = calc.convert(unitType, valueLeft);
+                                    valueRight = double.parse(valueRight.toStringAsFixed(2));
+                                  });
+                                }),
                           ],
                         ),
-                      ),
+                      ],
                     ),
-                    Expanded(
-                      child: ReusableCard(
-                        colour: kActiveCardColour,
-                        cardChild: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              '2X',
-                              style: kLabelTextStyle,
-                            ),
-                            Text(
-                              twoX.toString(),
-                              style: kNumberTextStyle,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                RoundIconButton(
-                                  icon: FontAwesomeIcons.minus,
-                                  onPressed: () {
-                                    setState(
-                                      () {
-                                        twoX /= 2;
-                                      },
-                                    );
-                                  },
-                                ),
-                                SizedBox(
-                                  width: 10.0,
-                                ),
-                                RoundIconButton(
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: ReusableCard(
+                          colour: kActiveCardColour,
+                          cardChild: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                '10X',
+                                style: kLabelTextStyle,
+                              ),
+                              Text(
+                                tenX.toString(),
+                                style: kNumberTextStyle,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  RoundIconButton(
+                                      icon: FontAwesomeIcons.minus,
+                                      onPressed: () {
+                                        setState(() {
+                                          tenX /= 10;
+                                        });
+                                      }),
+                                  SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  RoundIconButton(
                                     icon: FontAwesomeIcons.plus,
                                     onPressed: () {
                                       setState(() {
-                                        twoX *=2;
+                                        tenX *= 10;
                                       });
-                                    })
-                              ],
-                            )
-                          ],
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        child: ReusableCard(
+                          colour: kActiveCardColour,
+                          cardChild: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                '2X',
+                                style: kLabelTextStyle,
+                              ),
+                              Text(
+                                twoX.toString(),
+                                style: kNumberTextStyle,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  RoundIconButton(
+                                    icon: FontAwesomeIcons.minus,
+                                    onPressed: () {
+                                      setState(
+                                            () {
+                                          twoX /= 2;
+                                        },
+                                      );
+                                    },
+                                  ),
+                                  SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  RoundIconButton(
+                                      icon: FontAwesomeIcons.plus,
+                                      onPressed: () {
+                                        setState(() {
+                                          twoX *=2;
+                                        });
+                                      })
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              BottomButton(
-                buttonTitle: 'SETTINGS',
-                onTap: () {
-                  moveToSettingsPage();
+                BottomButton(
+                  buttonTitle: 'SETTINGS',
+                  onTap: () {
+                    moveToSettingsPage();
                   },
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    }
+    else {
+      return Scaffold(
+        appBar: AppBar(
+          toolbarHeight: kToolbarHeightLandscape,
+          title: Text('UNIT CALCULATOR'),
+        ),
+        body: Center(
+          child: Container(
+            width: kMainContainerWidthLandscape,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: ReusableCard(
+                          onPress: openUnitTypeDialog,
+                          colour: kActiveCardColour,
+                          cardChild: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                calc.getLabelLeft(unitType),
+                                style: kLabelTextStyle,
+                              ),
+                              Text(
+                                (valueLeft * tenX * twoX).toStringAsFixed(2),
+                                style: kNumberTextStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: ReusableCard(
+                          onPress: openUnitTypeDialog,
+                          colour: kActiveCardColour,
+                          cardChild: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                calc.getLabelRight(unitType),
+                                style: kLabelTextStyle,
+                              ),
+                              Text(
+                                (valueRight * tenX * twoX).toStringAsFixed(2),
+                                style: kNumberTextStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: ReusableCard(
+                    colour: kActiveCardColour,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        SliderTheme(
+                          data: SliderTheme.of(context).copyWith(
+                            inactiveTrackColor: Color(0xFF8D8E98),
+                            activeTrackColor: Colors.white,
+                            thumbColor: Color(0xFFEB1555),
+                            overlayColor: Color(0x29EB1555),
+                            thumbShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                            overlayShape:
+                            RoundSliderOverlayShape(overlayRadius: 30.0),
+                          ),
+                          child: Slider(
+                            value: valueLeft,
+                            min: calc.rangeMin(unitType),
+                            max: calc.rangeMax(unitType),
+                            onChanged: (double newValue) {
+                              setState(() {
+                                valueLeft = newValue;
+                                valueLeft = double.parse(valueLeft.toStringAsFixed(2));
+                                valueRight = calc.convert(unitType, valueLeft);
+                                valueRight = double.parse(valueRight.toStringAsFixed(2));
+                              });
+                            },
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: <Widget>[
+                            RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    valueLeft = calc.rangeDeltaAdjust(unitType, -1.0, valueLeft);
+                                    valueLeft = double.parse(valueLeft.toStringAsFixed(2));
+                                    valueRight = calc.convert(unitType, valueLeft);
+                                    valueRight = double.parse(valueRight.toStringAsFixed(2));
+                                  });
+                                }),
+                            SizedBox(
+                              width: 5.0,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.baseline,
+                              textBaseline: TextBaseline.alphabetic,
+                              children: [
+                                Text(
+                                  (tenX * twoX).toString(),
+                                  style: kNumberTextStyle,
+                                ),
+                                Text(
+                                  'X',
+                                  style: kLabelTextStyle,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 5.0,
+                            ),
+                            RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  setState(() {
+                                    valueLeft = calc.rangeDeltaAdjust(unitType, 1.0, valueLeft);
+                                    valueLeft = double.parse(valueLeft.toStringAsFixed(2));
+                                    valueRight = calc.convert(unitType, valueLeft);
+                                    valueRight = double.parse(valueRight.toStringAsFixed(2));
+                                  });
+                                }),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: ReusableCard(
+                          colour: kActiveCardColour,
+                          cardChild: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  RoundIconButton(
+                                      icon: FontAwesomeIcons.minus,
+                                      onPressed: () {
+                                        setState(() {
+                                          tenX /= 10;
+                                        });
+                                      }),
+                                  SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  RoundIconButton(
+                                    icon: FontAwesomeIcons.plus,
+                                    onPressed: () {
+                                      setState(() {
+                                        tenX *= 10;
+                                      });
+                                    },
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 20.0,
+                              ),
+                              Text(
+                                '10X',
+                                style: kLabelTextStyle,
+                              ),
+                              Text(
+                                tenX.toString(),
+                                style: kNumberTextStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: ReusableCard(
+                          colour: kActiveCardColour,
+                          cardChild: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  RoundIconButton(
+                                    icon: FontAwesomeIcons.minus,
+                                    onPressed: () {
+                                      setState(
+                                            () {
+                                          twoX /= 2;
+                                        },
+                                      );
+                                    },
+                                  ),
+                                  SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  RoundIconButton(
+                                      icon: FontAwesomeIcons.plus,
+                                      onPressed: () {
+                                        setState(() {
+                                          twoX *=2;
+                                        });
+                                      })
+                                ],
+                              ),
+                              SizedBox(
+                                width: 20.0,
+                              ),
+                              Text(
+                                '2X',
+                                style: kLabelTextStyle,
+                              ),
+                              Text(
+                                twoX.toString(),
+                                style: kNumberTextStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                BottomButton(
+                  buttonTitle: 'SETTINGS',
+                  onTap: () {
+                    moveToSettingsPage();
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
   }
 }

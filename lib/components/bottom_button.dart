@@ -9,21 +9,42 @@ class BottomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap as void Function()?,
-      child: Container(
-        child: Center(
-          child: Text(
-            buttonTitle,
-            style: kLargeButtonTextStyle,
+    var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    if (isPortrait) {
+      return GestureDetector(
+        onTap: onTap as void Function()?,
+        child: Container(
+          child: Center(
+            child: Text(
+              buttonTitle,
+              style: kLargeButtonTextStyle,
+            ),
           ),
+          color: kBottomContainerColour,
+          margin: EdgeInsets.only(top: 10.0),
+          padding: EdgeInsets.only(bottom: 20.0),
+          width: double.infinity,
+          height: kBottomContainerHeightPortrait,
         ),
-        color: kBottomContainerColour,
-        margin: EdgeInsets.only(top: 10.0),
-        padding: EdgeInsets.only(bottom: 20.0),
-        width: double.infinity,
-        height: kBottomContainerHeight,
-      ),
-    );
-  }
+      );
+    }
+    else {
+      return GestureDetector(
+        onTap: onTap as void Function()?,
+        child: Container(
+          child: Center(
+            child: Text(
+              buttonTitle,
+              style: kLargeButtonTextStyle,
+            ),
+          ),
+          color: kBottomContainerColour,
+          margin: EdgeInsets.only(top: 10.0),
+          padding: EdgeInsets.only(bottom: 10.0),
+          width: double.infinity,
+          height: kBottomContainerHeightLandscape,
+        ),
+      );
+    }
+   }
 }
