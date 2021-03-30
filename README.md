@@ -7,6 +7,7 @@ A Flutter PWA that shown Unit conversions like Inches vs Centimeters
 - try add gh-page base url directly to index.hmtl (can we still debug?)
     - (https://alpiepho.github.io/unit_calculator/)
 - try gh-page base url directly to flutter_service_worker.js
+    - (need post peanut script)
 - force portrait mode (may be Flutter bug)
 - persist settings
     - unittype
@@ -50,7 +51,7 @@ To enable null safety, type:
 
 flutter pub global activate peanut
 export PATH="$PATH":"$HOME/development/flutter/.pub-cache/bin"
-flutter pub global run peanut:peanut
+flutter pub global run peanut
 git push origin --set-upstream gh-pages
 
 ## Issues with GitHub Pages and Flutter app as PWA
