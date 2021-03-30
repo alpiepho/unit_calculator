@@ -4,11 +4,11 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "16497e0ca8b2725df6a8eb833ddf01d0",
-"index.html": "22b7248796bd6efb089136511c93625b",
-"/": "aa28e8bebfa0d6b5cc5814eaba5542f9",
+"index.html": "ffc1e464eb64ae8aa86313f39537f087",
+"/": "ff4112049348dd26a47fbc43f8175d6e",
 "test/widget_test.dart": "6b2218306343168469bea21c0f53457c",
-"main.dart.js": "a1503b8ee94936ce5c49464647176036",
-"web/index.html": "aa28e8bebfa0d6b5cc5814eaba5542f9",
+"main.dart.js": "58255bff69f8e9e3a92a860b613d1ddc",
+"web/index.html": "ff4112049348dd26a47fbc43f8175d6e",
 "web/favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "web/icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "web/icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
@@ -91,7 +91,7 @@ const RESOURCES = {
 ".dart_tool/version": "a2fe3d9fc9c4f868b370b15b14e137af",
 "web.iml": "0e10d326c956d57be354882dfdf4d740",
 "assets/AssetManifest.json": "e26ab0f0a9ebee8025260de29a88a4ca",
-"assets/NOTICES": "6b3f0bafca9f30dee92529b4bac1d2e6",
+"assets/NOTICES": "a496d4cb64f37659e1944864348005a9",
 "assets/FontManifest.json": "3ddd9b2ab1c2ae162d46e3cc7b78ba88",
 "assets/packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf": "dffd9504fcb1894620fa41c700172994",
 "assets/packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf": "4b6a9b7c20913279a3ad3dd9c96e155b",
@@ -107,12 +107,12 @@ const RESOURCES = {
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "https://alpiepho.github.io/unit_calculator/",
-"https://alpiepho.github.io/unit_calculator/main.dart.js",
-"https://alpiepho.github.io/unit_calculator/index.html",
-"https://alpiepho.github.io/unit_calculator/assets/NOTICES",
-"https://alpiepho.github.io/unit_calculator/assets/AssetManifest.json",
-"https://alpiepho.github.io/unit_calculator/assets/FontManifest.json"];
+  "/",
+"main.dart.js",
+"index.html",
+"assets/NOTICES",
+"assets/AssetManifest.json",
+"assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   self.skipWaiting();
