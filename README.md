@@ -71,7 +71,7 @@ One short-coming of peanut is ith does not handle the relative links in GitHub p
 there is a script ```run_peanut.sh``` that does those steps.  **NOTE** the path for this repo is hard coded in that script.
 
 
-## Referenced: flutter create web
+## Reference: flutter create web
 In order to run your application, type:
 
   $ cd web
@@ -85,6 +85,12 @@ To enable null safety, type:
 
 ## Reference: Details of persistent storage
 https://pub.dev/packages/shared_preferences
+
+## Reference: Ideas for Units to add
+
+https://www.unitconverters.net/
+
+https://www.isa.org/getmedia/192f7bda-c77c-480a-8925-1a39787ed098/CCST-Conversions-document.pdf
 
 
 ## Reference: (Original) Getting Started
