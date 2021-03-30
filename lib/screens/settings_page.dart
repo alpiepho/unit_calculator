@@ -115,7 +115,7 @@ class SettingsPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "Settings TBD",
+                          "Settings Pending",
                           style: kLabelTextStyle,
                         ),
                       ],
