@@ -1,41 +1,78 @@
 # unit_calculator
 
-A Flutter PWA that shown Unit conversions like Inches vs Centimeters
+A Flutter PWA that shown Unit conversions like Inches vs Centimeters.
+
+GH-Pages site: https://alpiepho.github.io/unit_calculator/
 
 **TODO**
 - gh link (as link)
-- try add gh-page base url directly to index.hmtl (can we still debug?)
-    - (https://alpiepho.github.io/unit_calculator/)
-- try gh-page base url directly to flutter_service_worker.js
-    - (need post peanut script)
-- force portrait mode (may be Flutter bug)
 - persist settings
     - unittype
     - valueleft
     - tenx
     - twox
-- add darkmode setting and persist
-- conditional style on values to scale down font
-- refactor for private variables and methods
-- other refactor (includes, repeated code)
+- create icon
+- refactor
+  - private variables and methods
+  - reusable components
+  - portrait vs landscape
+  - repeated code
+- fix web as landscape (check width?)
 - add more conversions
   - ft yards
   - yards ft
   - ft meter
   - meter ft
   - cooking
-- make sure carry over values work as expected (cooking?)
-- improve Lighthouse score
-- create icon
-
 - finish this README
-- re-visit style
 - test with others
 
+**Future**
+- revisit carry over values work as expected (cooking?)
+- conditional style on values to scale down font
+- add darkmode setting and persist
+- force portrait mode (may be Flutter bug)
+- improve Lighthouse score (limited by Flutter web at this point)
+- re-visit style
 
 
-**NOTES FROM flutter create web**
+## How to Use
 
+TBD
+
+
+## Units Supported
+
+- Inches to cm
+- Cm to Inches
+- Tablespoons to Teaspoons
+- Teaspoons to Tablespoons
+
+
+
+## Issues with GitHub Pages and Flutter app as PWA
+
+- need to add full gh-pages url to index.html `<base href="/">`
+- used peanut to build and push to gh-pages branch
+- **HACK** Flutter has poor support here, to get PWA add gh-pages url to all links in gh-pages branch mainfest.json
+- see end of https://github.com/flutter/flutter/issues/60069, issue 10-14 days old
+
+## Running peanut
+
+[peanut](https://pub.dev/packages/peanut) is a Dart package to automate the building Flutter and deploying to GitHub Pages.
+The following are the rough steps:
+```
+flutter pub global activate peanut
+export PATH="$PATH":"$HOME/development/flutter/.pub-cache/bin"
+flutter pub global run peanut
+git push origin --set-upstream gh-pages
+```
+
+One short-coming of peanut is ith does not handle the relative links in GitHub pages (described above).  To work around this,
+there is a script ```run_peanut.sh``` that does those steps.  **NOTE** the path for this repo is hard coded in that script.
+
+
+## Referenced: flutter create web
 In order to run your application, type:
 
   $ cd web
@@ -47,25 +84,11 @@ To enable null safety, type:
   $ dart migrate --apply-changes
 
 
-## Running peanut
-
-flutter pub global activate peanut
-export PATH="$PATH":"$HOME/development/flutter/.pub-cache/bin"
-flutter pub global run peanut
-git push origin --set-upstream gh-pages
-
-## Issues with GitHub Pages and Flutter app as PWA
-
-- need to add full gh-pages url to index.html `<base href="/">`
-- used peanut to build and push to gh-pages branch
-- **HACK** Flutter has poor support here, to get PWA add gh-pages url to all links in gh-pages branch mainfest.json
-- see end of https://github.com/flutter/flutter/issues/60069, issue 10-14 days old
-
-## Details of persistent storage
+## Reference: Details of persistent storage
 https://pub.dev/packages/shared_preferences
 
 
-## (Original) Getting Started
+## Reference: (Original) Getting Started
 
 This project is a starting point for a Flutter application.
 
