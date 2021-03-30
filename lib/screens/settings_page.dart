@@ -1,9 +1,11 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:unit_calculator/constants.dart';
 import 'package:unit_calculator/components/reusable_card.dart';
 import 'package:unit_calculator/components/bottom_button.dart';
 //import 'package:flutter/material.dart';
 //import 'package:flutter/cupertino.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatelessWidget {
   SettingsPage(
@@ -32,13 +34,43 @@ class SettingsPage extends StatelessWidget {
                   child: ReusableCard(
                     colour: kActiveCardColour,
                     cardChild: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Container(
-                          padding: EdgeInsets.all(15.0),
+                          padding: EdgeInsets.all(10.0),
                           child: Text(
-                            "A simple web applications written with Flutter as a PWA.\n  Version: " + kVersion + " \n https://github.com/alpiepho/unit_calculator \n Copyright 2021, Thatname Group.",
+                            "A simple web applications written with Flutter as a PWA.",
+                            style: kLabelTextStyle,
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(10.0),
+                          child: Text(
+                            "Version: " + kVersion,
+                            style: kLabelTextStyle,
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(10.0),
+                          child: new RichText(
+                              text: new TextSpan(
+                                children: [
+                                  new TextSpan(
+                                    text: "https://github.com/alpiepho/unit_calculator",
+                                    style: new TextStyle(color: Colors.blue),
+                                    recognizer:  new TapGestureRecognizer()
+                                               ..onTap = () { launch('https://github.com/alpiepho/unit_calculator');
+                                               },
+                                  ),
+                                ],
+                              ),
+                            ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(10.0),
+                          child: Text(
+                            "Copyright 2021, Thatname Group.",
                             style: kLabelTextStyle,
                           ),
                         ),

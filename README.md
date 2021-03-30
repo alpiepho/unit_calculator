@@ -5,7 +5,6 @@ A Flutter PWA that shown Unit conversions like Inches vs Centimeters.
 GH-Pages site: https://alpiepho.github.io/unit_calculator/
 
 **TODO**
-- gh link (as link)
 - persist settings
     - unittype
     - valueleft
