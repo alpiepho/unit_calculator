@@ -6,7 +6,6 @@ GH-Pages site: https://alpiepho.github.io/unit_calculator/
 
 **TODO**
 - pwa icons
-- fix web orientation
 - persist settings
     - unittype
     - valueleft
@@ -18,21 +17,28 @@ GH-Pages site: https://alpiepho.github.io/unit_calculator/
   - ft meter
   - meter ft
   - cooking
-- finish this README
 - test with others
 
 **Future**
 - revisit carry over values work as expected (cooking?)
-- conditional style on values to scale down font
 - add dark-mode setting and persist
 - force portrait mode (may be Flutter bug)
 - improve Lighthouse score (limited by Flutter web at this point)
 - re-visit style
+- fix web orientation
+- conditional style on values to scale down font
 
 
 ## How to Use
 
-TBD
+There are 5 sections on the main page.  The top row consists of a reference value that can be changed with the middle slider
+and -/+ buttons.  The second/right section on the top row is the unit conversion.
+
+To change the reference, use the slider.  Or for 'snap' increment/decrement use the +/- buttons.
+
+The last row will allow scaling the reference value.
+
+Also, you can tap on either section in the top row to bring up a dialog to change the current units.
 
 
 ## Units Supported
