@@ -31,7 +31,6 @@ class Unit {
 
 /*
 https://www.isa.org/getmedia/192f7bda-c77c-480a-8925-1a39787ed098/CCST-Conversions-document.pdf
-Table 1 Multiples and Submultiples ofSI Units
 Table 2 Length Units
 Table 3 Area Units
 Table 4 Volume Units
@@ -95,9 +94,38 @@ List<Unit> allUnits = [
   Unit('cooking: clove -> powder', 'clove', 'powder', 0.0, 10.0, 0.1, (double valueLeft) { return valueLeft/8.0; }),
   Unit('cooking: powder -> clove', 'powder', 'clove', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*8.0; }),
 
+  // fun
+  Unit('fun: balls -> walks', 'balls', 'walks', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/4.0; }),
+  Unit('fun: strikes -> outs', 'strikes', 'outs', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/3.0; }),
+
   // length
   Unit('length: inches -> cm',    'inches', 'cm', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*2.54; }),
   Unit('length: cm -> inches',    'cm', 'inches', 0.0, 300.0, 1.0, (double valueLeft) { return valueLeft/2.54; }),
+
+  // SI units
+  Unit('si: googol(10e100)', 'googol(10e100)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: yotta(10e18)',  'yotta(10e18)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: zetta(10e21)',  'zetta(10e21)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: exa(10e18)',    'exa(10e18)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: peta(10e15)',   'peta(10e15)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: tera(10e12)',   'tera(10e12)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: giga(10e9)',    'giga(10e9)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: mega(10e6)',    'mega(10e6)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: kilo(10e3)',    'kilo(10e3)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: hecto(10e2)',   'hecto(10e2)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: deca(10e1)',    'deca(10e1)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: deci(10e-1)',   'deci(10e-1)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: centi(10e-2)',  'centi(10e-2)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: milli(10e-3)',  'milli(10e-3)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: micro(10e-6)',  'micro(10e-6)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: nano(10e-9)',   'nano(10e-9)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: pico(10e-12)',  'pico(10e-12)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: femto(10e-15)', 'femto(10e-15)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: atto(10e-18)',  'atto(10e-18)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  //                               ^
+  Unit('si: zepto(10e-21)', 'atto(10e-18)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+  Unit('si: yocto(10e-24)', 'yocto(10e-24)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
+
 
   // volume
 
