@@ -29,6 +29,26 @@ class Unit {
 
 }
 
+/*
+https://www.isa.org/getmedia/192f7bda-c77c-480a-8925-1a39787ed098/CCST-Conversions-document.pdf
+Table 1 Multiples and Submultiples ofSI Units
+Table 2 Length Units
+Table 3 Area Units
+Table 4 Volume Units
+Table 5 Mass Units
+Table 6 Density Units
+Table 7 Volumetric Liquid Flow Units
+Table 8 Volumetric Gas Flow Units
+Table 9 Mass FlowUnits
+Table 10 High Pressure Units
+Table 11 Low Pressure Units
+Table 12 Speed Units
+Table 13 Torque Units
+Table 14 Dynamic ViscosityUnits
+Table 15 Kinematic Viscosity Units
+Table 16 Temperature Conversion Formulas
+*/
+  
 List<Unit> allUnits = [
   //Unit('nop: nop -> nop', 'nop', 'nop', 0.0, 10.0, 0.1, (double valueLeft) {return valueLeft;}),
 
