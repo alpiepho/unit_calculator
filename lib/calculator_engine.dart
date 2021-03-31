@@ -127,6 +127,16 @@ List<Unit> allUnits = [
   Unit('si: yocto(10e-24)', 'yocto(10e-24)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
 
 
+  // temperature
+  Unit('temp: F -> C',    'F', 'C', -200.0, 300.0, 1.0, (double valueLeft) { return (5.0/9.0)*(valueLeft - 32.0); }),
+  Unit('temp: C -> F',    'C', 'F', -100.0, 200.0, 1.0, (double valueLeft) { return (9.0/5.0)*(valueLeft) + 32.0; }),
+
+  Unit('temp: C -> K',    'C', 'K', -100.0, 200.0, 1.0, (double valueLeft) { return valueLeft + 273.0; }),
+  Unit('temp: K -> C',    'K', 'C', 0.0, 500.0, 1.0, (double valueLeft) { return valueLeft - 273.0; }),
+
+  Unit('temp: F -> K',    'F', 'K', -200.0, 300.0, 1.0, (double valueLeft) { return (5.0/9.0)*(valueLeft - 32.0) + 273.0; }),
+  Unit('temp: K -> F',    'K', 'F', 0.0, 500.0, 1.0, (double valueLeft) { return (9.0/5.0)*(valueLeft - 273) + 32.0; }),
+
   // volume
 
   // weight
