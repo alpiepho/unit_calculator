@@ -4,11 +4,11 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "16497e0ca8b2725df6a8eb833ddf01d0",
-"index.html": "ffc1e464eb64ae8aa86313f39537f087",
-"/": "ff4112049348dd26a47fbc43f8175d6e",
+"index.html": "e3a12a197f00cbbe5d962c455fe2cfd6",
+"/": "edde5d8e3a9d5855a52797a397180ede",
 "test/widget_test.dart": "6b2218306343168469bea21c0f53457c",
-"main.dart.js": "58255bff69f8e9e3a92a860b613d1ddc",
-"web/index.html": "ff4112049348dd26a47fbc43f8175d6e",
+"main.dart.js": "7223e33a586bd0e9269d7ab6701bc699",
+"web/index.html": "edde5d8e3a9d5855a52797a397180ede",
 "web/favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "web/icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "web/icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
@@ -56,7 +56,7 @@ const RESOURCES = {
 "ios/Flutter/AppFrameworkInfo.plist": "3c00b2cf8a8ead87c06edee95b639fe9",
 "ios/Flutter/Generated.xcconfig": "f349c2c43d3c88d4816759f96caec722",
 "README.md": "819ac07eefd10498065880dd0d4e318e",
-"favicon.png": "5dcef449791fa27946b3d35ad8803796",
+"favicon.png": "b9240ea9e1aced286a04674040eebe75",
 "pubspec.yaml": "a1f55a1f69a4786a0169dd22098e85e2",
 "android/app/build.gradle": "5ed6a2a9a6fa3018922253d574e13115",
 "android/app/src/profile/AndroidManifest.xml": "3550dc2715aa6b5f0f0bb04b30a11063",
@@ -84,9 +84,9 @@ const RESOURCES = {
 "android/settings.gradle": "10881f279cc48040996c7354515e0da7",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"manifest.json": "c79e9a24a9692eea1e53351801c4e1e4",
+"manifest.json": "2a60013ddfbc9bf162635fe6943b614d",
 "lib/main.dart": "352b81582960fe2a41708e65a541aa65",
-".dart_tool/package_config.json": "87f0228a42a0e9d08b1648e6766b1669",
+".dart_tool/package_config.json": "8d28c83bc0bfcbd899e5ff6b3acd11b2",
 ".dart_tool/package_config_subset": "3a2de5f3d88d60c20166c4c27dbb587e",
 ".dart_tool/version": "a2fe3d9fc9c4f868b370b15b14e137af",
 "web.iml": "0e10d326c956d57be354882dfdf4d740",
@@ -107,12 +107,12 @@ const RESOURCES = {
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "https://alpiepho.github.io/unit_calculator/",
-"https://alpiepho.github.io/unit_calculator/main.dart.js",
-"https://alpiepho.github.io/unit_calculator/index.html",
-"https://alpiepho.github.io/unit_calculator/assets/NOTICES",
-"https://alpiepho.github.io/unit_calculator/assets/AssetManifest.json",
-"https://alpiepho.github.io/unit_calculator/assets/FontManifest.json"];
+  "/",
+"main.dart.js",
+"index.html",
+"assets/NOTICES",
+"assets/AssetManifest.json",
+"assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   self.skipWaiting();
