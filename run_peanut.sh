@@ -31,4 +31,3 @@ git push
 git checkout master
 git stash pop
 flutter pub get
-
