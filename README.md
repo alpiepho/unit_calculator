@@ -10,7 +10,6 @@ GH-Pages site: https://alpiepho.github.io/unit_calculator/
   - yards ft
   - ft meter
   - meter ft
-  - cooking
 - test with others
 
 **Future**

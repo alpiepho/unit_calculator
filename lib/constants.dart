@@ -11,7 +11,7 @@ const kInactiveCardColour = Color(0xFF111328);
 const kBottomContainerColour = Color(0xFFEB1555);
 
 const kMainContainerWidthPortrait = 600.0;
-const kMainContainerWidthLandscape = 800.0;
+const kMainContainerWidthLandscape = 1000.0;
 
 const kBottomContainerHeightPortrait = 80.0;
 const kBottomContainerHeightLandscape = 40.0;
