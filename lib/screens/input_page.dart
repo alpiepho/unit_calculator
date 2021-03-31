@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-//import 'package:unit_calculator/components/icon_content.dart';
+import 'package:unit_calculator/calculator_engine.dart';
+import 'package:unit_calculator/components/bottom_button.dart';
 import 'package:unit_calculator/components/reusable_card.dart';
+import 'package:unit_calculator/components/round_icon_button.dart';
 import 'package:unit_calculator/constants.dart';
 import 'package:unit_calculator/screens/settings_page.dart';
-import 'package:unit_calculator/components/bottom_button.dart';
-import 'package:unit_calculator/components/round_icon_button.dart';
-import 'package:unit_calculator/calculator_engine.dart';
-
-import 'package:flutter_material_pickers/flutter_material_pickers.dart';
-//import 'package:shared_preferences/shared_preferences.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -28,7 +25,14 @@ class _InputPageState extends State<InputPage> {
   var selectedUnitSelect = "";
   List<String> allUnitSelects = CalculatorEngine().getUnitTypeSelectList();
 
-  void openUnitTypeDialog() async {
+  void _updateValueLeftEtc(double newValue) {
+    valueLeft = newValue;
+    valueLeft = double.parse(valueLeft.toStringAsFixed(2));
+    valueRight = calc.convert(unitType, valueLeft);
+    valueRight = double.parse(valueRight.toStringAsFixed(2));
+  }
+  
+  void _openUnitTypeDialog() async {
     showMaterialScrollPicker(
       backgroundColor: kActiveCardColour,
       headerColor: kActiveCardColour,
@@ -49,18 +53,13 @@ class _InputPageState extends State<InputPage> {
           // }
           if (valueRight < this.calc.rangeMin(unitType)) valueRight = this.calc.rangeMin(unitType);
           if (valueRight > this.calc.rangeMax(unitType)) valueRight = this.calc.rangeMax(unitType);
-
-          //TODO refactor
-          valueLeft = valueRight;
-          valueLeft = double.parse(valueLeft.toStringAsFixed(2));
-          valueRight = calc.convert(unitType, valueLeft);
-          valueRight = double.parse(valueRight.toStringAsFixed(2));
+          _updateValueLeftEtc(valueRight);
         });
       },
     );
   }
 
-  void moveToSettingsPage() async {
+  void _moveToSettingsPage() async {
     final result = await Navigator.push(
       context,
       MaterialPageRoute(
@@ -72,10 +71,7 @@ class _InputPageState extends State<InputPage> {
     if (result != null) {
       setState(() {
         unitType = (result < calc.maxUnits() ? result : 0);
-        valueLeft = valueRight;
-        valueLeft = double.parse(valueLeft.toStringAsFixed(2));
-        valueRight = calc.convert(unitType, valueLeft);
-        valueRight = double.parse(valueRight.toStringAsFixed(2));
+        _updateValueLeftEtc(valueRight);
       });
     }
   }
@@ -94,9 +90,10 @@ class _InputPageState extends State<InputPage> {
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
     if (isPortrait) {
       return Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
           toolbarHeight: kToolbarHeightPortrait,
-          title: Text('UNIT CALCULATOR'),
+          title: Text(kToolbarTitle),
         ),
         body: Center(
           child: Container(
@@ -109,7 +106,7 @@ class _InputPageState extends State<InputPage> {
                     children: <Widget>[
                       Expanded(
                         child: ReusableCard(
-                          onPress: openUnitTypeDialog,
+                          onPress: _openUnitTypeDialog,
                           colour: kActiveCardColour,
                           cardChild: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -128,7 +125,7 @@ class _InputPageState extends State<InputPage> {
                       ),
                       Expanded(
                         child: ReusableCard(
-                          onPress: openUnitTypeDialog,
+                          onPress: _openUnitTypeDialog,
                           colour: kActiveCardColour,
                           cardChild: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -171,10 +168,7 @@ class _InputPageState extends State<InputPage> {
                             max: calc.rangeMax(unitType),
                             onChanged: (double newValue) {
                               setState(() {
-                                valueLeft = newValue;
-                                valueLeft = double.parse(valueLeft.toStringAsFixed(2));
-                                valueRight = calc.convert(unitType, valueLeft);
-                                valueRight = double.parse(valueRight.toStringAsFixed(2));
+                                _updateValueLeftEtc(newValue);
                               });
                             },
                           ),
@@ -188,10 +182,7 @@ class _InputPageState extends State<InputPage> {
                                 icon: FontAwesomeIcons.minus,
                                 onPressed: () {
                                   setState(() {
-                                    valueLeft = calc.rangeDeltaAdjust(unitType, -1.0, valueLeft);
-                                    valueLeft = double.parse(valueLeft.toStringAsFixed(2));
-                                    valueRight = calc.convert(unitType, valueLeft);
-                                    valueRight = double.parse(valueRight.toStringAsFixed(2));
+                                    _updateValueLeftEtc(calc.rangeDeltaAdjust(unitType, -1.0, valueLeft));
                                   });
                                 }),
                             SizedBox(
@@ -219,10 +210,7 @@ class _InputPageState extends State<InputPage> {
                                 icon: FontAwesomeIcons.plus,
                                 onPressed: () {
                                   setState(() {
-                                    valueLeft = calc.rangeDeltaAdjust(unitType, 1.0, valueLeft);
-                                    valueLeft = double.parse(valueLeft.toStringAsFixed(2));
-                                    valueRight = calc.convert(unitType, valueLeft);
-                                    valueRight = double.parse(valueRight.toStringAsFixed(2));
+                                    _updateValueLeftEtc(calc.rangeDeltaAdjust(unitType, 1.0, valueLeft));
                                   });
                                 }),
                           ],
@@ -324,7 +312,7 @@ class _InputPageState extends State<InputPage> {
                 BottomButton(
                   buttonTitle: 'SETTINGS',
                   onTap: () {
-                    moveToSettingsPage();
+                    _moveToSettingsPage();
                   },
                 ),
               ],
@@ -337,7 +325,7 @@ class _InputPageState extends State<InputPage> {
       return Scaffold(
         appBar: AppBar(
           toolbarHeight: kToolbarHeightLandscape,
-          title: Text('UNIT CALCULATOR'),
+          title: Text(kToolbarTitle),
         ),
         body: Center(
           child: Container(
@@ -350,7 +338,7 @@ class _InputPageState extends State<InputPage> {
                     children: <Widget>[
                       Expanded(
                         child: ReusableCard(
-                          onPress: openUnitTypeDialog,
+                          onPress: _openUnitTypeDialog,
                           colour: kActiveCardColour,
                           cardChild: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -369,7 +357,7 @@ class _InputPageState extends State<InputPage> {
                       ),
                       Expanded(
                         child: ReusableCard(
-                          onPress: openUnitTypeDialog,
+                          onPress: _openUnitTypeDialog,
                           colour: kActiveCardColour,
                           cardChild: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -413,10 +401,7 @@ class _InputPageState extends State<InputPage> {
                             max: calc.rangeMax(unitType),
                             onChanged: (double newValue) {
                               setState(() {
-                                valueLeft = newValue;
-                                valueLeft = double.parse(valueLeft.toStringAsFixed(2));
-                                valueRight = calc.convert(unitType, valueLeft);
-                                valueRight = double.parse(valueRight.toStringAsFixed(2));
+                                _updateValueLeftEtc(newValue);
                               });
                             },
                           ),
@@ -430,10 +415,7 @@ class _InputPageState extends State<InputPage> {
                                 icon: FontAwesomeIcons.minus,
                                 onPressed: () {
                                   setState(() {
-                                    valueLeft = calc.rangeDeltaAdjust(unitType, -1.0, valueLeft);
-                                    valueLeft = double.parse(valueLeft.toStringAsFixed(2));
-                                    valueRight = calc.convert(unitType, valueLeft);
-                                    valueRight = double.parse(valueRight.toStringAsFixed(2));
+                                    _updateValueLeftEtc(calc.rangeDeltaAdjust(unitType, -1.0, valueLeft));
                                   });
                                 }),
                             SizedBox(
@@ -461,10 +443,7 @@ class _InputPageState extends State<InputPage> {
                                 icon: FontAwesomeIcons.plus,
                                 onPressed: () {
                                   setState(() {
-                                    valueLeft = calc.rangeDeltaAdjust(unitType, 1.0, valueLeft);
-                                    valueLeft = double.parse(valueLeft.toStringAsFixed(2));
-                                    valueRight = calc.convert(unitType, valueLeft);
-                                    valueRight = double.parse(valueRight.toStringAsFixed(2));
+                                    _updateValueLeftEtc(calc.rangeDeltaAdjust(unitType, 1.0, valueLeft));
                                   });
                                 }),
                           ],
@@ -572,7 +551,7 @@ class _InputPageState extends State<InputPage> {
                 BottomButton(
                   buttonTitle: 'SETTINGS',
                   onTap: () {
-                    moveToSettingsPage();
+                    _moveToSettingsPage();
                   },
                 ),
               ],

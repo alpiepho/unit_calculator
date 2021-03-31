@@ -1,10 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:unit_calculator/constants.dart';
 import 'package:unit_calculator/components/reusable_card.dart';
 import 'package:unit_calculator/components/bottom_button.dart';
-//import 'package:flutter/material.dart';
-//import 'package:flutter/cupertino.dart';
+import 'package:unit_calculator/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -18,9 +16,10 @@ class SettingsPage extends StatelessWidget {
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
     if (isPortrait) {
       return Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
           toolbarHeight: kToolbarHeightPortrait,
-          title: Text('UNIT CALCULATOR'),
+          title: Text(kToolbarTitle),
         ),
         body: Center(
           child: Container(
@@ -30,7 +29,7 @@ class SettingsPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Expanded(
-                  flex: 2,
+                  flex: 3,
                   child: ReusableCard(
                     colour: kActiveCardColour,
                     cardChild: Column(
@@ -40,7 +39,7 @@ class SettingsPage extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.all(10.0),
                           child: Text(
-                            "A simple web applications written with Flutter as a PWA.",
+                            "A simple Flutter web application as PWA.",
                             style: kLabelTextStyle,
                           ),
                         ),
@@ -110,7 +109,7 @@ class SettingsPage extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(
           toolbarHeight: kToolbarHeightLandscape,
-          title: Text('UNIT CALCULATOR'),
+          title: Text(kToolbarTitle),
         ),
         body: Center(
           child: Container(
@@ -130,7 +129,7 @@ class SettingsPage extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.all(15.0),
                           child: Text(
-                            "A simple web applications written with Flutter as a PWA.\n  Version: " + kVersion + " \n https://github.com/alpiepho/unit_calculator \n Copyright 2021, Thatname Group.",
+                            "A simple Flutter web application as PWA.\n  Version: " + kVersion + " \n https://github.com/alpiepho/unit_calculator \n Copyright 2021, Thatname Group.",
                             style: kLabelTextStyle,
                           ),
                         ),

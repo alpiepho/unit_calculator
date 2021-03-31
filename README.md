@@ -1,6 +1,6 @@
 # unit_calculator
 
-A Flutter PWA that shown Unit conversions like Inches vs Centimeters.
+A Flutter PWA that shows Unit conversions like Inches vs Centimeters.
 
 GH-Pages site: https://alpiepho.github.io/unit_calculator/
 
@@ -10,13 +10,6 @@ GH-Pages site: https://alpiepho.github.io/unit_calculator/
     - valueleft
     - tenx
     - twox
-- create icon
-- refactor
-  - private variables and methods
-  - reusable components
-  - portrait vs landscape
-  - repeated code
-- fix web as landscape (check width?)
 - add more conversions
   - ft yards
   - yards ft
@@ -29,7 +22,7 @@ GH-Pages site: https://alpiepho.github.io/unit_calculator/
 **Future**
 - revisit carry over values work as expected (cooking?)
 - conditional style on values to scale down font
-- add darkmode setting and persist
+- add dark-mode setting and persist
 - force portrait mode (may be Flutter bug)
 - improve Lighthouse score (limited by Flutter web at this point)
 - re-visit style
