@@ -5,12 +5,6 @@ A Flutter PWA that shows Unit conversions like Inches vs Centimeters.
 GH-Pages site: https://alpiepho.github.io/unit_calculator/
 
 **TODO**
-- pwa icons
-- persist settings
-    - unittype
-    - valueleft
-    - tenx
-    - twox
 - add more conversions
   - ft yards
   - yards ft
@@ -84,8 +78,16 @@ To enable null safety, type:
   $ dart migrate --apply-changes
 
 
+## Reference: Adding PWA icons
+
+https://stackoverflow.com/questions/56745525/how-to-configure-icon-for-my-flutter-web-application
+
 ## Reference: Details of persistent storage
+Most common:<br>
 https://pub.dev/packages/shared_preferences
+
+This is simpler:<br>
+https://pusher.com/tutorials/local-data-flutter
 
 ## Reference: Ideas for Units to add
 

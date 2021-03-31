@@ -7,6 +7,7 @@ import 'package:unit_calculator/components/reusable_card.dart';
 import 'package:unit_calculator/components/round_icon_button.dart';
 import 'package:unit_calculator/constants.dart';
 import 'package:unit_calculator/screens/settings_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -15,21 +16,58 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
 
-  int unitType = 0;
-  double valueLeft = 1.0;
-  double valueRight = 2.54;
-  double tenX = 1.0;
-  double twoX = 1.0;
-  CalculatorEngine calc = CalculatorEngine();
+  int _unitType = 0;
+  double _valueLeft = 1.0;
+  double _valueRight = 2.54;
+  double _tenX = 1.0;
+  double _twoX = 1.0;
+  CalculatorEngine _calc = CalculatorEngine();
 
   var selectedUnitSelect = "";
   List<String> allUnitSelects = CalculatorEngine().getUnitTypeSelectList();
 
+  _readPersistentData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final unitType = prefs.getInt('unitType') ?? 0;
+    final valueLeft = prefs.getDouble('valueLeft') ?? 1.0;
+    final valueRight = prefs.getDouble('valueRight') ?? 2.54;
+    final tenX = prefs.getDouble('tenX') ?? 1.0;
+    final twoX = prefs.getDouble('twoX') ?? 1.0;
+    //print('_readPersistentData: $unitType');
+    //print('_readPersistentData: valueLeft');
+    //print('_readPersistentData: valueRight');
+    //print('_readPersistentData: tenX');
+    //print('_readPersistentData: twoX');
+    setState(() {
+      _unitType = unitType;
+      _valueLeft = valueLeft;
+      _valueRight = valueRight;
+      _tenX = tenX;
+      _twoX = twoX;
+    });
+  }
+
+  _savePersistentData() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt('unitType', _unitType);
+    prefs.setDouble('valueLeft', _valueLeft);
+    prefs.setDouble('valueRight', _valueRight);
+    prefs.setDouble('tenX', _tenX);
+    prefs.setDouble('twoX', _twoX);
+    //print('_savePersistentData $_unitType');
+    //print('_savePersistentData _valueLeft');
+    //print('_savePersistentData _valueRight');
+    //print('_savePersistentData _tenX');
+    //print('_savePersistentData _twoX');
+  }
+
+
   void _updateValueLeftEtc(double newValue) {
-    valueLeft = newValue;
-    valueLeft = double.parse(valueLeft.toStringAsFixed(2));
-    valueRight = calc.convert(unitType, valueLeft);
-    valueRight = double.parse(valueRight.toStringAsFixed(2));
+    _valueLeft = newValue;
+    _valueLeft = double.parse(_valueLeft.toStringAsFixed(2));
+    _valueRight = _calc.convert(_unitType, _valueLeft);
+    _valueRight = double.parse(_valueRight.toStringAsFixed(2));
+    _savePersistentData();
   }
   
   void _openUnitTypeDialog() async {
@@ -44,16 +82,10 @@ class _InputPageState extends State<InputPage> {
       onChanged: (value) {
         setState(() {
           selectedUnitSelect = value;
-          unitType = this.calc.decodeUnitTypeSelectString(selectedUnitSelect);
-          //TODO Save to persistent storage
-          // _incrementCounter() async {
-          //   SharedPreferences prefs = await SharedPreferences.getInstance();
-          //   int counter = (prefs.getInt('counter') ?? 0) + 1;
-          //   await prefs.setInt('counter', counter);
-          // }
-          if (valueRight < this.calc.rangeMin(unitType)) valueRight = this.calc.rangeMin(unitType);
-          if (valueRight > this.calc.rangeMax(unitType)) valueRight = this.calc.rangeMax(unitType);
-          _updateValueLeftEtc(valueRight);
+          _unitType = this._calc.decodeUnitTypeSelectString(selectedUnitSelect);
+          if (_valueRight < this._calc.rangeMin(_unitType)) _valueRight = this._calc.rangeMin(_unitType);
+          if (_valueRight > this._calc.rangeMax(_unitType)) _valueRight = this._calc.rangeMax(_unitType);
+          _updateValueLeftEtc(_valueRight);
         });
       },
     );
@@ -64,14 +96,14 @@ class _InputPageState extends State<InputPage> {
       context,
       MaterialPageRoute(
         builder: (context) => SettingsPage(
-          unitType: unitType,
+          unitType: _unitType,
         ),
       ),
     );
     if (result != null) {
       setState(() {
-        unitType = (result < calc.maxUnits() ? result : 0);
-        _updateValueLeftEtc(valueRight);
+        _unitType = (result < _calc.maxUnits() ? result : 0);
+        _updateValueLeftEtc(_valueRight);
       });
     }
   }
@@ -79,10 +111,7 @@ class _InputPageState extends State<InputPage> {
   @override
   initState() {
     super.initState();
-    setState(() {
-      unitType = 0;
-      //TODO get initial state from persistant storage
-    });
+    _readPersistentData();
   }
 
   @override
@@ -112,11 +141,11 @@ class _InputPageState extends State<InputPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                calc.getLabelLeft(unitType),
+                                _calc.getLabelLeft(_unitType),
                                 style: kLabelTextStyle,
                               ),
                               Text(
-                                (valueLeft * tenX * twoX).toStringAsFixed(2),
+                                (_valueLeft * _tenX * _twoX).toStringAsFixed(2),
                                 style: kNumberTextStyle,
                               ),
                             ],
@@ -131,11 +160,11 @@ class _InputPageState extends State<InputPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                calc.getLabelRight(unitType),
+                                _calc.getLabelRight(_unitType),
                                 style: kLabelTextStyle,
                               ),
                               Text(
-                                (valueRight * tenX * twoX).toStringAsFixed(2),
+                                (_valueRight * _tenX * _twoX).toStringAsFixed(2),
                                 style: kNumberTextStyle,
                               ),
                             ],
@@ -163,9 +192,9 @@ class _InputPageState extends State<InputPage> {
                             RoundSliderOverlayShape(overlayRadius: 30.0),
                           ),
                           child: Slider(
-                            value: valueLeft,
-                            min: calc.rangeMin(unitType),
-                            max: calc.rangeMax(unitType),
+                            value: _valueLeft,
+                            min: _calc.rangeMin(_unitType),
+                            max: _calc.rangeMax(_unitType),
                             onChanged: (double newValue) {
                               setState(() {
                                 _updateValueLeftEtc(newValue);
@@ -182,7 +211,7 @@ class _InputPageState extends State<InputPage> {
                                 icon: FontAwesomeIcons.minus,
                                 onPressed: () {
                                   setState(() {
-                                    _updateValueLeftEtc(calc.rangeDeltaAdjust(unitType, -1.0, valueLeft));
+                                    _updateValueLeftEtc(_calc.rangeDeltaAdjust(_unitType, -1.0, _valueLeft));
                                   });
                                 }),
                             SizedBox(
@@ -194,7 +223,7 @@ class _InputPageState extends State<InputPage> {
                               textBaseline: TextBaseline.alphabetic,
                               children: [
                                 Text(
-                                  (tenX * twoX).toString(),
+                                  (_tenX * _twoX).toString(),
                                   style: kNumberTextStyle,
                                 ),
                                 Text(
@@ -210,7 +239,7 @@ class _InputPageState extends State<InputPage> {
                                 icon: FontAwesomeIcons.plus,
                                 onPressed: () {
                                   setState(() {
-                                    _updateValueLeftEtc(calc.rangeDeltaAdjust(unitType, 1.0, valueLeft));
+                                    _updateValueLeftEtc(_calc.rangeDeltaAdjust(_unitType, 1.0, _valueLeft));
                                   });
                                 }),
                           ],
@@ -233,7 +262,7 @@ class _InputPageState extends State<InputPage> {
                                 style: kLabelTextStyle,
                               ),
                               Text(
-                                tenX.toString(),
+                                _tenX.toString(),
                                 style: kNumberTextStyle,
                               ),
                               Row(
@@ -243,7 +272,7 @@ class _InputPageState extends State<InputPage> {
                                       icon: FontAwesomeIcons.minus,
                                       onPressed: () {
                                         setState(() {
-                                          tenX /= 10;
+                                          _tenX /= 10;
                                         });
                                       }),
                                   SizedBox(
@@ -253,7 +282,7 @@ class _InputPageState extends State<InputPage> {
                                     icon: FontAwesomeIcons.plus,
                                     onPressed: () {
                                       setState(() {
-                                        tenX *= 10;
+                                        _tenX *= 10;
                                       });
                                     },
                                   ),
@@ -274,7 +303,7 @@ class _InputPageState extends State<InputPage> {
                                 style: kLabelTextStyle,
                               ),
                               Text(
-                                twoX.toString(),
+                                _twoX.toString(),
                                 style: kNumberTextStyle,
                               ),
                               Row(
@@ -285,7 +314,7 @@ class _InputPageState extends State<InputPage> {
                                     onPressed: () {
                                       setState(
                                             () {
-                                          twoX /= 2;
+                                          _twoX /= 2;
                                         },
                                       );
                                     },
@@ -297,7 +326,7 @@ class _InputPageState extends State<InputPage> {
                                       icon: FontAwesomeIcons.plus,
                                       onPressed: () {
                                         setState(() {
-                                          twoX *=2;
+                                          _twoX *=2;
                                         });
                                       })
                                 ],
@@ -344,11 +373,11 @@ class _InputPageState extends State<InputPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                calc.getLabelLeft(unitType),
+                                _calc.getLabelLeft(_unitType),
                                 style: kLabelTextStyle,
                               ),
                               Text(
-                                (valueLeft * tenX * twoX).toStringAsFixed(2),
+                                (_valueLeft * _tenX * _twoX).toStringAsFixed(2),
                                 style: kNumberTextStyle,
                               ),
                             ],
@@ -363,11 +392,11 @@ class _InputPageState extends State<InputPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                calc.getLabelRight(unitType),
+                                _calc.getLabelRight(_unitType),
                                 style: kLabelTextStyle,
                               ),
                               Text(
-                                (valueRight * tenX * twoX).toStringAsFixed(2),
+                                (_valueRight * _tenX * _twoX).toStringAsFixed(2),
                                 style: kNumberTextStyle,
                               ),
                             ],
@@ -396,9 +425,9 @@ class _InputPageState extends State<InputPage> {
                             RoundSliderOverlayShape(overlayRadius: 30.0),
                           ),
                           child: Slider(
-                            value: valueLeft,
-                            min: calc.rangeMin(unitType),
-                            max: calc.rangeMax(unitType),
+                            value: _valueLeft,
+                            min: _calc.rangeMin(_unitType),
+                            max: _calc.rangeMax(_unitType),
                             onChanged: (double newValue) {
                               setState(() {
                                 _updateValueLeftEtc(newValue);
@@ -415,7 +444,7 @@ class _InputPageState extends State<InputPage> {
                                 icon: FontAwesomeIcons.minus,
                                 onPressed: () {
                                   setState(() {
-                                    _updateValueLeftEtc(calc.rangeDeltaAdjust(unitType, -1.0, valueLeft));
+                                    _updateValueLeftEtc(_calc.rangeDeltaAdjust(_unitType, -1.0, _valueLeft));
                                   });
                                 }),
                             SizedBox(
@@ -427,7 +456,7 @@ class _InputPageState extends State<InputPage> {
                               textBaseline: TextBaseline.alphabetic,
                               children: [
                                 Text(
-                                  (tenX * twoX).toString(),
+                                  (_tenX * _twoX).toString(),
                                   style: kNumberTextStyle,
                                 ),
                                 Text(
@@ -443,7 +472,7 @@ class _InputPageState extends State<InputPage> {
                                 icon: FontAwesomeIcons.plus,
                                 onPressed: () {
                                   setState(() {
-                                    _updateValueLeftEtc(calc.rangeDeltaAdjust(unitType, 1.0, valueLeft));
+                                    _updateValueLeftEtc(_calc.rangeDeltaAdjust(_unitType, 1.0, _valueLeft));
                                   });
                                 }),
                           ],
@@ -468,7 +497,7 @@ class _InputPageState extends State<InputPage> {
                                       icon: FontAwesomeIcons.minus,
                                       onPressed: () {
                                         setState(() {
-                                          tenX /= 10;
+                                          _tenX /= 10;
                                         });
                                       }),
                                   SizedBox(
@@ -478,7 +507,7 @@ class _InputPageState extends State<InputPage> {
                                     icon: FontAwesomeIcons.plus,
                                     onPressed: () {
                                       setState(() {
-                                        tenX *= 10;
+                                        _tenX *= 10;
                                       });
                                     },
                                   ),
@@ -492,7 +521,7 @@ class _InputPageState extends State<InputPage> {
                                 style: kLabelTextStyle,
                               ),
                               Text(
-                                tenX.toString(),
+                                _tenX.toString(),
                                 style: kNumberTextStyle,
                               ),
                             ],
@@ -513,7 +542,7 @@ class _InputPageState extends State<InputPage> {
                                     onPressed: () {
                                       setState(
                                             () {
-                                          twoX /= 2;
+                                          _twoX /= 2;
                                         },
                                       );
                                     },
@@ -525,7 +554,7 @@ class _InputPageState extends State<InputPage> {
                                       icon: FontAwesomeIcons.plus,
                                       onPressed: () {
                                         setState(() {
-                                          twoX *=2;
+                                          _twoX *=2;
                                         });
                                       })
                                 ],
@@ -538,7 +567,7 @@ class _InputPageState extends State<InputPage> {
                                 style: kLabelTextStyle,
                               ),
                               Text(
-                                twoX.toString(),
+                                _twoX.toString(),
                                 style: kNumberTextStyle,
                               ),
                             ],
