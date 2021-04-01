@@ -1,6 +1,7 @@
 {
     "name": "unit calculator",
     "short_name": "unit calculator",
+    "version": "0.2",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
