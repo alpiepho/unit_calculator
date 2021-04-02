@@ -5,6 +5,7 @@ A Flutter PWA that shows Unit conversions like Inches vs Centimeters.
 GH-Pages site: https://alpiepho.github.io/unit_calculator/
 
 **TODO**
+- other -> launch google (ie. https://www.google.com/search?q=meter+to+yard)
 - validate calc and ranges
 - test with others
 
@@ -16,7 +17,6 @@ GH-Pages site: https://alpiepho.github.io/unit_calculator/
 - re-visit style
 - fix web orientation
 - conditional style on values to scale down font
-- other -> launch google (ie. https://www.google.com/search?q=meter+to+yard)
 
 
 ## How to Use
@@ -29,14 +29,6 @@ To change the reference, use the slider.  Or for 'snap' increment/decrement use 
 The last row will allow scaling the reference value.
 
 Also, you can tap on either section in the top row to bring up a dialog to change the current units.
-
-
-## Units Supported
-
-- Inches to cm
-- Cm to Inches
-- Tablespoons to Teaspoons
-- Teaspoons to Tablespoons
 
 
 
