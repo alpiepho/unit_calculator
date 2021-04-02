@@ -4,15 +4,10 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "16497e0ca8b2725df6a8eb833ddf01d0",
-"index.html": "77f53bc53aae2489d89170c729fc3710",
-"/": "29bf9b09866d52d720692c268daab663",
+"index.html": "105c191d34658cd70bb4579edd30a528",
+"/": "105c191d34658cd70bb4579edd30a528",
 "test/widget_test.dart": "6b2218306343168469bea21c0f53457c",
-"main.dart.js": "69dd1d438daf2f2970f4f884a905f9a8",
-"web/index.html": "29bf9b09866d52d720692c268daab663",
-"web/favicon.png": "b9240ea9e1aced286a04674040eebe75",
-"web/icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
-"web/icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-"web/manifest.json": "1f566b509698542d126fbd8f162102f7",
+"main.dart.js": "bf5a537611a0e1ea47f8bfe3caade9bd",
 "pubspec.lock": "78eb7951a1ebd5b75c8fb66ed6160530",
 "ios/Runner.xcworkspace/contents.xcworkspacedata": "7053ea3423578187357b9f92d0c67fc6",
 "ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist": "117105d2f2ee718eb485a07574a219b6",
@@ -122,12 +117,12 @@ const RESOURCES = {
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "https://alpiepho.github.io/unit_calculator/",
-"https://alpiepho.github.io/unit_calculator/main.dart.js",
-"https://alpiepho.github.io/unit_calculator/index.html",
-"https://alpiepho.github.io/unit_calculator/assets/NOTICES",
-"https://alpiepho.github.io/unit_calculator/assets/AssetManifest.json",
-"https://alpiepho.github.io/unit_calculator/assets/FontManifest.json"];
+  "/",
+"main.dart.js",
+"index.html",
+"assets/NOTICES",
+"assets/AssetManifest.json",
+"assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   self.skipWaiting();
