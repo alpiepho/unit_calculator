@@ -1,5 +1,7 @@
 
 
+import 'package:flutter/cupertino.dart';
+
 class Unit {
   String labelSelect = '';
   String labelLeft = '';
@@ -98,9 +100,57 @@ List<Unit> allUnits = [
   Unit('fun: balls -> walks', 'balls', 'walks', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/4.0; }),
   Unit('fun: strikes -> outs', 'strikes', 'outs', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/3.0; }),
 
+  // area
+  Unit('area: in^2 -> ft^2',    'in^2', 'ft^2', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/144.0; }),
+  Unit('area: ft^2 -> in^2',    'ft^2', 'in^2', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*144.0; }),
+
+  Unit('area: ft^2 -> yd^2',    'ft^2', 'yd^2', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/9.0; }),
+  Unit('area: yd^2 -> ft^2',    'yd^2', 'ft^2', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*9.0; }),
+
+  Unit('area: in^2 -> yd^2',    'in^2', 'yd^2', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/(9.0*144.0); }),
+  Unit('area: yd^2 -> in^2',    'yd^2', 'in^2', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*(9.0*144.0); }),
+
+  Unit('area: yd^2 -> mi^2',    'yd^2', 'mi^2', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/(3.098*1000000); }),
+  Unit('area: mi^2 -> yd^2',    'mi^2', 'yd^2', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*(3.098*1000000); }),
+
+  Unit('area: ft^2 -> mi^2',    'ft^2', 'mi^2', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/(2.788*10000000); }),
+  Unit('area: mi^2 -> ft^2',    'mi^2', 'ft^2', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*(2.788*10000000); }),
+
+  Unit('area: ft^2 -> acre',    'ft^2', 'acre', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/43560.0; }),
+  Unit('area: acre -> ft^2',    'acre', 'ft^2', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*43560.0; }),
+
+  Unit('area: yd^2 -> acre',    'yd^2', 'acre', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/4840.0; }),
+  Unit('area: acre -> yd^2',    'acre', 'yd^2', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*4840.0; }),
+
+  Unit('area: mi^2 -> acre',    'mi^2', 'acre', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*640.0; }),
+  Unit('area: acre -> mi^2',    'acre', 'mi^2', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/640.0; }),
+
+  // acre sqyd
+  // acre sqft
+
+
+
   // length
   Unit('length: inches -> cm',    'inches', 'cm', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*2.54; }),
-  Unit('length: cm -> inches',    'cm', 'inches', 0.0, 300.0, 1.0, (double valueLeft) { return valueLeft/2.54; }),
+  Unit('length: cm -> inches',    'cm', 'inches', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/2.54; }),
+
+  Unit('length: inches -> ft',    'inches', 'ft', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/12.0; }),
+  Unit('length: ft -> inches',    'ft', 'inches', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*12.0; }),
+
+  Unit('length: ft -> yd',    'ft', 'yd', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/3.0; }),
+  Unit('length: yd -> ft',    'yd', 'ft', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*3.0; }),
+
+  Unit('length: ft -> mi',    'ft', 'mi', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/5280.0; }),
+  Unit('length: mi -> ft',    'mi', 'ft', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*5280.0; }),
+
+  Unit('length: yd -> mi',    'yd', 'mi', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/(5280.0/3.0); }),
+  Unit('length: mi -> yd',    'yd', 'yd', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*(5280.0/3.0); }),
+
+  Unit('length: yd -> m',    'yd', 'm', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/1.09361; }),
+  Unit('length: m -> yd',    'm', 'yd', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*1.09361; }),
+
+  Unit('length: m -> mi',    'yd', 'mi', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/1609.34; }),
+  Unit('length: mi -> m',    'mi', 'm', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*1609.34; }),
 
   // SI units
   Unit('si: googol(10e100)', 'googol(10e100)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
@@ -138,8 +188,12 @@ List<Unit> allUnits = [
   Unit('temp: K -> F',    'K', 'F', 0.0, 500.0, 1.0, (double valueLeft) { return (9.0/5.0)*(valueLeft - 273) + 32.0; }),
 
   // volume
+  Unit('volume: gallon -> liter',    'gallon', 'liter', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*3.78541; }),
+  Unit('volume: liter -> gallon',    'liter', 'gallon', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/3.78541; }),
 
   // weight
+  Unit('volume: lb -> kg',    'lb', 'kg', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/2.205; }),
+  Unit('volume: kg -> lb',    'kg', 'lb', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*2.205; }),
 
   //Unit('AAA to BBB', 'aaa', 'bbb', 0.0, 10.0, convertNop),
 ];

@@ -5,11 +5,7 @@ A Flutter PWA that shows Unit conversions like Inches vs Centimeters.
 GH-Pages site: https://alpiepho.github.io/unit_calculator/
 
 **TODO**
-- add more conversions
-  - ft yards
-  - yards ft
-  - ft meter
-  - meter ft
+- validate calc and ranges
 - test with others
 
 **Future**
@@ -20,6 +16,7 @@ GH-Pages site: https://alpiepho.github.io/unit_calculator/
 - re-visit style
 - fix web orientation
 - conditional style on values to scale down font
+- other -> launch google (ie. https://www.google.com/search?q=meter+to+yard)
 
 
 ## How to Use
