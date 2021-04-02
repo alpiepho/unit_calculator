@@ -4,11 +4,11 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "16497e0ca8b2725df6a8eb833ddf01d0",
-"index.html": "c34698b5229e9052591d472e6b2ce22e",
-"/": "e1633a6ca8c935a00676a5b7cc475c6c",
+"index.html": "5788b7c219758f217871bf821c34f977",
+"/": "c7350ad97e6b694506dc6aef52eacfa1",
 "test/widget_test.dart": "6b2218306343168469bea21c0f53457c",
-"main.dart.js": "cd9867da759aed274fbd1d91b2fce980",
-"web/index.html": "e1633a6ca8c935a00676a5b7cc475c6c",
+"main.dart.js": "53ecd8372c4db31333707d3bc9038fb7",
+"web/index.html": "c7350ad97e6b694506dc6aef52eacfa1",
 "web/favicon.png": "b9240ea9e1aced286a04674040eebe75",
 "web/icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "web/icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
@@ -101,7 +101,7 @@ const RESOURCES = {
 "icons/87.png": "9437180946e6d2701e577d8a596a6138",
 "manifest.json": "97b63069a3de0426521876eeb77a2acd",
 "lib/main.dart": "352b81582960fe2a41708e65a541aa65",
-".dart_tool/package_config.json": "25eb92545acd6634ad469a3ebcfe2004",
+".dart_tool/package_config.json": "c1a96624d0fc3c7c6ef39c459b138baa",
 ".dart_tool/package_config_subset": "3a2de5f3d88d60c20166c4c27dbb587e",
 ".dart_tool/version": "a2fe3d9fc9c4f868b370b15b14e137af",
 "web.iml": "0e10d326c956d57be354882dfdf4d740",
@@ -122,12 +122,12 @@ const RESOURCES = {
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "https://alpiepho.github.io/unit_calculator/",
-"https://alpiepho.github.io/unit_calculator/main.dart.js",
-"https://alpiepho.github.io/unit_calculator/index.html",
-"https://alpiepho.github.io/unit_calculator/assets/NOTICES",
-"https://alpiepho.github.io/unit_calculator/assets/AssetManifest.json",
-"https://alpiepho.github.io/unit_calculator/assets/FontManifest.json"];
+  "/",
+"main.dart.js",
+"index.html",
+"assets/NOTICES",
+"assets/AssetManifest.json",
+"assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   self.skipWaiting();
