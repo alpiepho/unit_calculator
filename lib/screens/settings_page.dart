@@ -16,7 +16,6 @@ class SettingsPage extends StatelessWidget {
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
     if (isPortrait) {
       return Scaffold(
-        backgroundColor: Colors.black,
         appBar: AppBar(
           toolbarHeight: kToolbarHeightPortrait,
           title: Text(kToolbarTitle),
