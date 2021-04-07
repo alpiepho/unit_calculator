@@ -117,12 +117,12 @@ const RESOURCES = {
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "/",
-"main.dart.js",
-"index.html",
-"assets/NOTICES",
-"assets/AssetManifest.json",
-"assets/FontManifest.json"];
+  "https://alpiepho.github.io/unit_calculator/",
+"https://alpiepho.github.io/unit_calculator/main.dart.js",
+"https://alpiepho.github.io/unit_calculator/index.html",
+"https://alpiepho.github.io/unit_calculator/assets/NOTICES",
+"https://alpiepho.github.io/unit_calculator/assets/AssetManifest.json",
+"https://alpiepho.github.io/unit_calculator/assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   self.skipWaiting();
