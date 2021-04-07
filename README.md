@@ -6,7 +6,6 @@ GH-Pages site: https://alpiepho.github.io/unit_calculator/
 
 **TODO**
 - validate calc and ranges
-- conditional style on values to scale down font
 - test with others
 
 **Future**

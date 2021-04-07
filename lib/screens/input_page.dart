@@ -123,6 +123,12 @@ class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
     var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    var valueLeftText = (_valueLeft * _tenX * _twoX).toStringAsFixed(2);
+    var valueLeftStyle = kNumberTextLargeStyle;
+    if (valueLeftText.length > 6) valueLeftStyle = kNumberTextSmallStyle;
+    var valueRightText = (_valueRight * _tenX * _twoX).toStringAsFixed(2);
+    var valueRightStyle = kNumberTextLargeStyle;
+    if (valueRightText.length > 6) valueRightStyle = kNumberTextSmallStyle;
     if (isPortrait) {
       return Scaffold(
         appBar: AppBar(
@@ -150,8 +156,8 @@ class _InputPageState extends State<InputPage> {
                                 style: kLabelTextStyle,
                               ),
                               Text(
-                                (_valueLeft * _tenX * _twoX).toStringAsFixed(2),
-                                style: kNumberTextStyle,
+                                valueLeftText,
+                                style: valueLeftStyle,
                               ),
                             ],
                           ),
@@ -169,8 +175,8 @@ class _InputPageState extends State<InputPage> {
                                 style: kLabelTextStyle,
                               ),
                               Text(
-                                (_valueRight * _tenX * _twoX).toStringAsFixed(2),
-                                style: kNumberTextStyle,
+                                valueRightText,
+                                style: valueRightStyle,
                               ),
                             ],
                           ),
@@ -229,7 +235,7 @@ class _InputPageState extends State<InputPage> {
                               children: [
                                 Text(
                                   (_tenX * _twoX).toString(),
-                                  style: kNumberTextStyle,
+                                  style: kNumberTextLargeStyle,
                                 ),
                                 Text(
                                   'X',
@@ -268,7 +274,7 @@ class _InputPageState extends State<InputPage> {
                               ),
                               Text(
                                 _tenX.toString(),
-                                style: kNumberTextStyle,
+                                style: kNumberTextLargeStyle,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -309,7 +315,7 @@ class _InputPageState extends State<InputPage> {
                               ),
                               Text(
                                 _twoX.toString(),
-                                style: kNumberTextStyle,
+                                style: kNumberTextLargeStyle,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -382,8 +388,8 @@ class _InputPageState extends State<InputPage> {
                                 style: kLabelTextStyle,
                               ),
                               Text(
-                                (_valueLeft * _tenX * _twoX).toStringAsFixed(2),
-                                style: kNumberTextStyle,
+                                valueLeftText,
+                                style: valueLeftStyle,
                               ),
                             ],
                           ),
@@ -401,8 +407,8 @@ class _InputPageState extends State<InputPage> {
                                 style: kLabelTextStyle,
                               ),
                               Text(
-                                (_valueRight * _tenX * _twoX).toStringAsFixed(2),
-                                style: kNumberTextStyle,
+                                valueRightText,
+                                style: valueRightStyle,
                               ),
                             ],
                           ),
@@ -462,7 +468,7 @@ class _InputPageState extends State<InputPage> {
                               children: [
                                 Text(
                                   (_tenX * _twoX).toString(),
-                                  style: kNumberTextStyle,
+                                  style: kNumberTextLargeStyle,
                                 ),
                                 Text(
                                   'X',
@@ -527,7 +533,7 @@ class _InputPageState extends State<InputPage> {
                               ),
                               Text(
                                 _tenX.toString(),
-                                style: kNumberTextStyle,
+                                style: kNumberTextLargeStyle,
                               ),
                             ],
                           ),
@@ -573,7 +579,7 @@ class _InputPageState extends State<InputPage> {
                               ),
                               Text(
                                 _twoX.toString(),
-                                style: kNumberTextStyle,
+                                style: kNumberTextLargeStyle,
                               ),
                             ],
                           ),
