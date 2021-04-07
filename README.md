@@ -5,18 +5,17 @@ A Flutter PWA that shows Unit conversions like Inches vs Centimeters.
 GH-Pages site: https://alpiepho.github.io/unit_calculator/
 
 **TODO**
-- other -> launch google (ie. https://www.google.com/search?q=meter+to+yard)
 - validate calc and ranges
+- conditional style on values to scale down font
 - test with others
 
 **Future**
-- revisit carry over values work as expected (cooking?)
+- carry over values from one unit to another
+- home-screen icon (seems to be snapshot of app, not icon from manifest.json)
 - add dark-mode setting and persist
 - force portrait mode (may be Flutter bug)
 - improve Lighthouse score (limited by Flutter web at this point)
 - re-visit style
-- fix web orientation
-- conditional style on values to scale down font
 
 
 ## How to Use

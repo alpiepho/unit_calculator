@@ -51,9 +51,7 @@ Table 16 Temperature Conversion Formulas
 */
   
 List<Unit> allUnits = [
-  //Unit('nop: nop -> nop', 'nop', 'nop', 0.0, 10.0, 0.1, (double valueLeft) {return valueLeft;}),
-
-  // cooking
+  // TODO: verify cooking
   //   1 tablespoon = 3 teaspoon
   //   2 tablespoon = 1 oz
   //   0.5 cup = 8 tablespoon
@@ -195,7 +193,7 @@ List<Unit> allUnits = [
   Unit('volume: lb -> kg',    'lb', 'kg', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft/2.205; }),
   Unit('volume: kg -> lb',    'kg', 'lb', 0.0, 100.0, 1.0, (double valueLeft) { return valueLeft*2.205; }),
 
-  //Unit('AAA to BBB', 'aaa', 'bbb', 0.0, 10.0, convertNop),
+  Unit('google',  'google', 'google', 0.0, 100.0, 1.0, (double valueLeft) { return 0; }),
 ];
 
 class CalculatorEngine {

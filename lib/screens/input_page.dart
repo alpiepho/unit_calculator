@@ -8,6 +8,7 @@ import 'package:unit_calculator/components/round_icon_button.dart';
 import 'package:unit_calculator/constants.dart';
 import 'package:unit_calculator/screens/settings_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -80,13 +81,18 @@ class _InputPageState extends State<InputPage> {
       items: allUnitSelects,
       selectedItem: selectedUnitSelect,
       onChanged: (value) {
-        setState(() {
-          selectedUnitSelect = value;
-          _unitType = this._calc.decodeUnitTypeSelectString(selectedUnitSelect);
-          if (_valueRight < this._calc.rangeMin(_unitType)) _valueRight = this._calc.rangeMin(_unitType);
-          if (_valueRight > this._calc.rangeMax(_unitType)) _valueRight = this._calc.rangeMax(_unitType);
-          _updateValueLeftEtc(_valueRight);
-        });
+        if (value == 'google') {
+          launch('https://www.google.com/search?q=meter+to+yard');
+        }
+        else {
+          setState(() {
+            selectedUnitSelect = value;
+            _unitType = this._calc.decodeUnitTypeSelectString(selectedUnitSelect);
+            if (_valueRight < this._calc.rangeMin(_unitType)) _valueRight = this._calc.rangeMin(_unitType);
+            if (_valueRight > this._calc.rangeMax(_unitType)) _valueRight = this._calc.rangeMax(_unitType);
+            _updateValueLeftEtc(_valueRight);
+          });
+        }
       },
     );
   }
