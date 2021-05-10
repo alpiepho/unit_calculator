@@ -172,6 +172,25 @@ List<Unit> allUnits = [
   Unit('si: zepto(10e-21)', 'atto(10e-18)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
   Unit('si: yocto(10e-24)', 'yocto(10e-24)', '', 0.0, 10.0, 1.0, (double valueLeft) { return valueLeft*1; }),
 
+  // rate
+  Unit('rate: Kbps -> Mbps',    'Kbps', 'Mbps', 0.0, 100.0, 1.0, (double valueLeft) { return (valueLeft)*(1024); }),
+  Unit('rate: Kbps -> Kbps',    'Mbps', 'Kbps', 0.0, 100.0, 1.0, (double valueLeft) { return (1024)/(valueLeft)/(1024); }),
+  Unit('rate: KBps -> Kbps',    'KBps', 'Kbps', 0.0, 100.0, 1.0, (double valueLeft) { return (valueLeft)/(8); }),
+  Unit('rate: Kbps -> KBps',    'Kbps', 'KBps', 0.0, 100.0, 1.0, (double valueLeft) { return (valueLeft)*(8); }),
+  Unit('rate: MBps -> Mbps',    'MBps', 'Mbps', 0.0, 100.0, 1.0, (double valueLeft) { return (valueLeft)/(8); }),
+  Unit('rate: Mbps -> MBps',    'Mbps', 'MBps', 0.0, 100.0, 1.0, (double valueLeft) { return (valueLeft)*(8); }),
+  Unit('rate: GBps -> Gbps',    'GBps', 'Gbps', 0.0, 100.0, 1.0, (double valueLeft) { return (valueLeft)/(8); }),
+  Unit('rate: Gbps -> GBps',    'Gbps', 'GBps', 0.0, 100.0, 1.0, (double valueLeft) { return (valueLeft)*(8); }),
+
+  // size
+  Unit('rate: KB -> mkt KB',    'KB', 'mkt KB', 0.0, 100.0, 1.0, (double valueLeft) { return (valueLeft*1024)/(1000); }),
+  Unit('rate: mkt KB -> KB',    'mkt KB', 'KB', 0.0, 100.0, 1.0, (double valueLeft) { return (valueLeft*1000)/(1024); }),
+  Unit('rate: MB -> mkt MB',    'MB', 'mkt MB', 0.0, 100.0, 1.0, (double valueLeft) { return (valueLeft*1024*1024)/(1000*1000); }),
+  Unit('rate: mkt MB -> MB',    'mkt MB', 'MB', 0.0, 100.0, 1.0, (double valueLeft) { return (valueLeft*1000*1000)/(1024*1024); }),
+  Unit('rate: GB -> mkt GB',    'GB', 'mkt GB', 0.0, 100.0, 1.0, (double valueLeft) { return (valueLeft*1024*1024*1024)/(1000*1000*1000); }),
+  Unit('rate: mkt GB -> GB',    'mkt GB', 'GB', 0.0, 100.0, 1.0, (double valueLeft) { return (valueLeft*1000*1000*1000)/(1024*1024*1024); }),
+  Unit('rate: TB -> mkt TB',    'TB', 'mkt TB', 0.0, 100.0, 1.0, (double valueLeft) { return (valueLeft*1024*1024*1024*1024)/(1000*1000*1000*1000); }),
+  Unit('rate: mkt TB -> TB',    'mkt TB', 'TB', 0.0, 100.0, 1.0, (double valueLeft) { return (valueLeft*1000*1000*1000*1000)/(1024*1024*1024*1024); }),
 
   // temperature
   Unit('temp: F -> C',    'F', 'C', -200.0, 300.0, 1.0, (double valueLeft) { return (5.0/9.0)*(valueLeft - 32.0); }),
